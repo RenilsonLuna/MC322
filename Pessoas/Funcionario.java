@@ -3,7 +3,7 @@ package Pessoas;
 public class Funcionario {
     private String nome;
     private String cargo;
-    private int RA;
+    private int ra;
 
     public String getNome() {
         return nome;
@@ -13,7 +13,7 @@ public class Funcionario {
         return cargo;
     }
 
-    public int getRA() {
-        return RA;
+    public int getRa() {
+        return ra;
     }
 }

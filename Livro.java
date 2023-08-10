@@ -3,7 +3,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private String editora;
-    private String coordenada;
+    private String id;
     private String genero;
     private int tombo;
     private boolean disponivel;
@@ -21,8 +21,8 @@ public class Livro {
         return editora;
     }
 
-    public String getCoordenada() {
-        return coordenada;
+    public String getId() {
+        return id;
     }
 
     public String getGenero() {
