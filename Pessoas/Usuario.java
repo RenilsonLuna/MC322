@@ -2,15 +2,15 @@ package Pessoas;
 
 public class Usuario {
     private String nome;
-    private int RA;
+    private int ra;
     private int bloqueado;
-    private int NLemprestado; // numero de livros emprestado
+    private int qtdLivrosEmprestados;
 
     public String getNome() {
         return nome;
     }
 
-    public int getRA() {
+    public int getRa() {
         return RA;
     }
 
@@ -18,7 +18,7 @@ public class Usuario {
         return bloqueado;
     }
 
-    public int NLemprestadoemprestado() {
-        return NLemprestado;
+    public int getQtdLivrosEmprestados() {
+        return qtdLivrosEmprestados;
     }
 }
