@@ -3,7 +3,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private String editora;
-    private String id;
+    private String coordenada;
     private String genero;
     private int tombo;
     private boolean disponivel;
@@ -21,8 +21,8 @@ public class Livro {
         return editora;
     }
 
-    public String getId() {
-        return id;
+    public String getCoordenada() {
+        return coordenada;
     }
 
     public String getGenero() {
@@ -37,8 +37,22 @@ public class Livro {
         return disponivel;
     }
 
-    public void setEmprestado(boolean emprestado) {
+    public void setEmprestado(boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+    
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = !disponivel;
+    }
+    
+
 
 }

@@ -37,4 +37,19 @@ public class Usuario {
         nLemprestado++;
     }
 
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public void setBloqueado(boolean bloqueado) {
+        this.bloqueado = bloqueado ? 1 : 0;
+    }
+    
+    public void setNLemprestado(int NLemprestado) {
+        this.nLemprestado = NLemprestado;
+    }
+    
+
+
 }

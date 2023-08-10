@@ -31,5 +31,20 @@ public class Funcionario {
         // - Atualizar o status do livro (emprestado)
         // - Registrar o empréstimo para o usuário
         System.out.println("Livro emprestado com sucesso para " + usuario.getNome());
+        livro.setEmprestado(false); // o livro deixa de estar disponivel
+
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+    
+    public void setRA(int RA) {
+        this.RA = RA;
+    }
+    
 }
