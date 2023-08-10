@@ -1,3 +1,4 @@
+
 public class Livro {
     private String titulo;
     private String autor;
@@ -5,6 +6,8 @@ public class Livro {
     private String coordenada;
     private String genero;
     private int tombo;
+    private boolean disponivel;
+
 
     public String getTitulo() {
         return titulo;
@@ -29,4 +32,13 @@ public class Livro {
     public int getTombo() {
         return tombo;
     }
+    
+    public boolean isEmprestado() {
+        return disponivel;
+    }
+
+    public void setEmprestado(boolean emprestado) {
+        this.disponivel = disponivel;
+    }
+
 }
