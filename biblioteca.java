@@ -1,8 +1,8 @@
 
 public class biblioteca {
     private String nomeBiblioteca;
-    private int nTotalLivro;
-    private int nEmprestLivro;
+    private int nTotalLivros;
+    private int nLivrosEmprestados;
 
     /* 
     será que realmente é necessário esse método? Visto que funcionario que chama pra emprestar o livro
@@ -19,8 +19,8 @@ public class biblioteca {
 
     */
 
-    public void setNEmprestLivro(int nEmprestLivro) {
-        this.nEmprestLivro = nEmprestLivro+1;
-    }
+    // public void setNEmprestLivro(int nEmprestLivro) {
+    //     this.nEmprestLivro = nEmprestLivro+1;
+    // }
 
 }

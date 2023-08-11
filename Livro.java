@@ -3,7 +3,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private String editora;
-    private String coordenada;
+    private String idLivro;
     private String genero;
     private int tombo;
     private boolean disponivel;
@@ -21,7 +21,7 @@ public class Livro {
         return editora;
     }
 
-    public String getCoordenada() {
+    public String getIdLivro() {
         return coordenada;
     }
 
@@ -50,9 +50,6 @@ public class Livro {
     }
     
     public void setDisponivel(boolean disponivel) {
-        this.disponivel = !disponivel;
+        this.disponivel = disponivel;
     }
-    
-
-
 }

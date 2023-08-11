@@ -1,3 +1,7 @@
+import Usuario;
+import Livro;
+import Funcionario;
+import Biblioteca; 
 
 public class Principal {
 
@@ -6,7 +10,7 @@ public class Principal {
         Usuario usuario1 = new Usuario();
         usuario1.setNome("João");
         usuario1.setBloqueado(false);
-        usuario1.setNLemprestado(2);
+        usuario1.setNLivrosEmprestados(2);
 
         Livro livro1 = new Livro();
         livro1.setTitulo("Aventura Fantástica");

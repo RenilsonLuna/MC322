@@ -1,9 +1,11 @@
+import Livro;
 
 public class Usuario {
     private String nome;
-    private int RA;
-    private int bloqueado;
-    private int nLemprestado; // numero de livros emprestado
+    private int ra;
+    private boolean bloqueado;
+    private int nLivrosEmprestados; // numero de livros emprestado
+    private Livro livrosEmprestados[];
 
     public String getNome() {
         return nome;
@@ -14,12 +16,12 @@ public class Usuario {
     }
 
 
-    public int getNLemprestadoemprestado() {
-        return nLemprestado;
+    public int getNLivrosEmprestados() {
+        return nLivrosEmprestados;
     }
 
     public boolean isBloqueado() {
-        return bloqueado == 1; // Retorna true se bloqueado for igual a 1, caso contrário, retorna false.
+        return bloqueado;
     }
 
     public void solicitarEmprestimo() {
@@ -28,13 +30,13 @@ public class Usuario {
             return;
         }
 
-        if (nLemprestado >= 4) { 
+        if (nLivrosEmprestados >= 4) { 
             System.out.println("Limite de empréstimos excedido. Não é possível solicitar mais empréstimos.");
             return;
         }
 
         System.out.println("Livro emprestado com sucesso para " + getNome());
-        nLemprestado++;
+        nLivrosEmprestado++;
     }
 
 
@@ -49,7 +51,4 @@ public class Usuario {
     public void setNLemprestado(int NLemprestado) {
         this.nLemprestado = NLemprestado;
     }
-    
-
-
 }
