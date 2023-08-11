@@ -22,7 +22,7 @@ public class Livro {
     }
 
     public String getIdLivro() {
-        return coordenada;
+        return idLivro;
     }
 
     public String getGenero() {
