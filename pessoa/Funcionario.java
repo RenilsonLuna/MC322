@@ -1,38 +1,36 @@
 package pessoa;
 
-Import biblioteca.Livro;
-import Usuario;
+import biblioteca.Livro;
+import pessoa.Usuario;
+import java.util.Random;
 
 public class Funcionario {
     private String nome;
     private String cargo;
-    private String idFuncionario;
+    private int idFuncionario;
 
     public Funcionario(String nome, String cargo){
         this.nome = nome;
         this.cargo = cargo;
-        // Gerar codigo aleatorio para id
-        // ...
+        
+        Random rand = new Random();
+        this.idFuncionario = rand.nextInt(1000, 10000);
     
     }
 
     public void realizarEmprestimo(Usuario usuario, Livro livro) {
-        if (usuario.isBloqueado()) {
+        if (usuario.getBloqueado()) {
             System.out.println("Usuário bloqueado. Não é possível realizar o empréstimo.");
             return;
         }
 
-        if (livro.isEmprestado()) {
+        if (!livro.getDisponivel()) {
             System.out.println("Livro já emprestado. Não é possível realizar o empréstimo.");
             return;
         }
 
-        // Realizar a logica de emprestimo:
-        // - Atualizar o status do livro (emprestado)
-        // - Registrar o empréstimo para o usuário
         System.out.println("Livro emprestado com sucesso para " + usuario.getNome());
-        livro.setEmprestado(false); // o livro deixa de estar disponivel
-
+        livro.setDisponivel(false);
     }
 
     // Getters

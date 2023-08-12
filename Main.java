@@ -1,31 +1,18 @@
 import pessoa.Usuario;
 import pessoa.Funcionario;
 import biblioteca.Livro;
-import biblioteca.Biblioteca; 
 
 public class Main {
 
     public static void main(String[] args) {
+    	
         // Criando objetos de exemplo
-        Usuario usuario1 = new Usuario();
-        usuario1.setNome("João");
-        usuario1.setBloqueado(false);
-        usuario1.setNLivrosEmprestados(2);
+        Usuario usuario1 = new Usuario("Carlos Alberto", "525153921");
+        
+        Livro livro1 = new Livro("Alem do bem e do mal", "Nietzsche", "L&PM", "Filosofia e etica", 121515);
+        
+        Funcionario funcionario = new Funcionario("Jose", "balconista");
 
-        Livro livro1 = new Livro();
-        livro1.setTitulo("Aventura Fantástica");
-        livro1.setAutor("Alice Autora");
-        livro1.setEmprestado(false);
-
-        Funcionario funcionario = new Funcionario();
-        funcionario.setNome("Ana");
-        funcionario.setCargo("Bibliotecária");
-        funcionario.setRA(12345);
-
-        // Realizando empréstimo
-        funcionario.emprestarLivro(usuario1, livro1);
-
-        // Exemplo de chamada do método solicitarEmprestimo na classe Usuario
-        usuario1.solicitarEmprestimo();
+        usuario1.solicitarEmprestimo(livro1, funcionario);
     }
 }

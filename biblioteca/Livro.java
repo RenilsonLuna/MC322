@@ -7,7 +7,7 @@ public class Livro {
     private String idLivro;
     private String genero;
     private int tombo;
-    private boolean disponivel = 1; // Livro disponivel por padrao, assim que criado
+    private boolean disponivel = true; // Livro disponivel por padrao, assim que criado
     
     public Livro(String titulo, String autor, String editora, String genero, int tombo){
         this.titulo = titulo;
@@ -41,12 +41,8 @@ public class Livro {
         return tombo;
     }
     
-    public boolean isEmprestado() {
+    public boolean getDisponivel() {
         return disponivel;
-    }
-
-    public void setEmprestado(boolean disponivel) {
-        this.disponivel = disponivel;
     }
 
     public void setTitulo(String titulo) {
