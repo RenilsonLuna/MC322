@@ -2,6 +2,7 @@ package pessoa;
 
 import biblioteca.Livro;
 import pessoa.Usuario;
+import biblioteca.Biblioteca;
 import java.util.Random;
 
 public class Funcionario {
@@ -14,7 +15,7 @@ public class Funcionario {
         this.cargo = cargo;
         
         Random rand = new Random();
-        this.idFuncionario = rand.nextInt(1000, 10000);
+        this.idFuncionario = rand.nextInt(10000);
     
     }
 
@@ -31,6 +32,11 @@ public class Funcionario {
 
         System.out.println("Livro emprestado com sucesso para " + usuario.getNome());
         livro.setDisponivel(false);
+    }
+
+    public void darBaixa(Livro livro, Usuario usuario){
+        livro.setDisponivel(true);
+        System.out.println("Livro devolvido com sucesso!\n --> Usuario ainda tem " + ( usuario.getNLivrosEmprestados() - 1) + " livro(s) emprestados");
     }
 
     // Getters
