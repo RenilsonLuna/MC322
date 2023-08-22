@@ -2,58 +2,44 @@ package biblioteca;
 
 public class Livro {
     private String titulo;
-    private String autor;
-    private String editora;
     private String idLivro;
+    private String[] autores;
+    private String editora;
+    private String edicao;
     private String genero;
+    private String isbn;
     private int tombo;
-    private boolean disponivel = true; // Livro disponivel por padrao, assim que criado
-    
-    public Livro(String titulo, String autor, String editora, String genero, int tombo){
+    private boolean disponivel = true;
+
+    public Livro(String titulo, String[] autores, String editora, String genero, int tombo){
         this.titulo = titulo;
-        this.autor = autor;
+        this.autores = autores;
         this.editora = editora;
         this.genero = genero;
         this.tombo = tombo;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    // Getters
+    public String getTitulo() { return titulo; }
 
-    public String getAutor() {
-        return autor;
-    }
+    public String[] getAutores() { return autores; }
 
-    public String getEditora() {
-        return editora;
-    }
+    public String getEditora() { return editora; }
 
-    public String getIdLivro() {
-        return idLivro;
-    }
+    public String getIdLivro() { return idLivro; }
 
-    public String getGenero() {
-        return genero;
-    }
+    public String getGenero() { return genero; }
 
-    public int getTombo() {
-        return tombo;
-    }
+    public int getTombo() { return tombo; }
+
+    public String getEdicao(){ return edicao; }
     
-    public boolean getDisponivel() {
-        return disponivel;
-    }
+    public boolean getDisponivel() { return disponivel; }
+    
+    public String isbn() { return isbn; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+
+    // Setters
+    public void setDisponivel(boolean disponivel) { this.disponivel = disponivel; }
     
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-    
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
 }
