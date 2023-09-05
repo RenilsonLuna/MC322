@@ -44,9 +44,11 @@ public class Main {
         System.out.println();
         posGraduando.solicitarEmprestimo(livro, funcionario1);
         System.out.println();
+        graduando.solicitarRenovacao(musica, funcionario1);
 
         graduando.realizarDevolucao(funcionario1, musica);
         System.out.println();
         posGraduando.realizarDevolucao(funcionario1, livro);
+
     }
 }
