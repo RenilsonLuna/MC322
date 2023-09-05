@@ -1,6 +1,9 @@
 package biblioteca.multimidia;
 import java.time.LocalDate;
 
+import pessoa.Pessoa;
+
+
 public abstract class Multimidia {
     private int idMultimidia;
     private String titulo;
@@ -11,6 +14,7 @@ public abstract class Multimidia {
     private boolean disponivel;
     private String conservacao;
     private static int qtdMidias;
+    protected Pessoa reserva;
     
     public Multimidia(int idMultimidia, String titulo, String[] autores, String genero) {
         this.idMultimidia = idMultimidia;
@@ -51,6 +55,8 @@ public abstract class Multimidia {
     public String getConservacao() { return conservacao; }
     public void setConservacao(String conservacao) { this.conservacao = conservacao; }
 
+    public Pessoa getReserva() { return reserva; }
+    public void setReserva(Pessoa reserva) { this.reserva = reserva; }
 
     public static int getQtdMidias(){ return qtdMidias; }
 
