@@ -1,1 +1,0 @@
-Este é um projeto de desenvolvimento da disciplina de Programação Orientada a objetos. Neste projeto, visamos a construção de um sistema de biblioteca voltado ao gerenciamento das funcionalidades principais que dizem respeito as tarefas cotidianas na biblioteca, tais como gerenciamento de impréstimos, geração de relatórios e controle de multimidias. 
