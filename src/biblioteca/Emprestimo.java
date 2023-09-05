@@ -33,6 +33,7 @@ public class Emprestimo {
     public Pessoa getEmprestante(){ return emprestante; }
 
     public LocalDate getDataDevolucao() { return dataDevolucao; }
+    public void setDataDevolucao(LocalDate novaData){ this.dataDevolucao = novaData; }
     
     public Multimidia getItem() { return item; }
 

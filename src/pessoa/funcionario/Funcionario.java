@@ -41,13 +41,12 @@ public class Funcionario extends Pessoa{
     }
     
     public void devolucao(Multimidia item, Pessoa usuario){
-
         item.setDisponivel(true);
         LocalDate dataDeHoje = LocalDate.now();
         int qtdEmprestimos = Emprestimo.getQtdEmprestimos();
         Emprestimo[] emprestimos = lib.getEmprestimos();
         for(int i = 0; i < qtdEmprestimos; i++){
-            if (emprestimos[i] != null && emprestimos[i].getItem().getIdMultimidia() == item.getIdMultimidia()){
+            if (emprestimos[i] != null && emprestimos[i].getItem() == item){
                 if (dataDeHoje.isBefore(emprestimos[i].getDataDevolucao())){
                     System.out.println("Emprestimo " + emprestimos[i].getCodigoEmprestimo() + " desfeito. Midia devolvida!");
                 }else{
@@ -56,9 +55,22 @@ public class Funcionario extends Pessoa{
                 lib.removerEmprestimo(lib.getEmprestimos()[i]);
             }
         }
-
     }
 
-    // protected void renovacao(Biblioteca lib, Multimidia)
+    public void renovacao(Multimidia item){
+        int qtdEmprestimos = Emprestimo.getQtdEmprestimos();
+        int i;
+        Emprestimo[] emprestimosLib = lib.getEmprestimos();
+        for(i = 0; i < qtdEmprestimos; i++){
+            if(emprestimosLib[i] != null && emprestimosLib[i].getItem() == item){
+                // adicionar reserva
+                LocalDate dataAntiga  = emprestimosLib[i].getDataDevolucao();
+                int diasAMais = emprestimosLib[i].getEmprestante().getPrazoEmprestimo();
+                LocalDate novaData = dataAntiga.plusDays(diasAMais);
+                emprestimosLib[i].setDataDevolucao(novaData);
+                System.out.println("Devolucao atualizada: de " + dataAntiga + " para " + novaData);
+            }
+        }
+    }
 }
 

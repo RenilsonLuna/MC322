@@ -75,10 +75,8 @@ public abstract class Pessoa {
         for(int i = 0; i < qtd; i++){
             if (multimidiasEmprestadas[i] != null){
                 int id = multimidiasEmprestadas[i].getIdMultimidia();
-                if (item.getIdMultimidia() == id){
-                    Multimidia tmp = multimidiasEmprestadas[qtd - 1];
-                    multimidiasEmprestadas[qtd - 1] = item;
-                    multimidiasEmprestadas[i] = tmp;
+                if (item.getIdMultimidia() == id){;
+                    multimidiasEmprestadas[qtd - 1] = multimidiasEmprestadas[i];
                     multimidiasEmprestadas[qtd - 1] = null;
                 }
             }
@@ -94,5 +92,9 @@ public abstract class Pessoa {
     public void realizarDevolucao(Funcionario f, Multimidia m){
         f.devolucao(m, this);
         removerMultimidia(m);
+    }
+    
+    public void solicitarRenovacao(Multimidia item, Funcionario f){
+        f.renovacao(item);
     }
 }    
