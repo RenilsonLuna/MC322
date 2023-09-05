@@ -1,11 +1,12 @@
 package pessoa;
-//import biblioteca.multimidia.Livro;
-import biblioteca.multimidia.*;
-import biblioteca.Biblioteca;
-import pessoa.funcionario.Funcionario;
-
 // import biblioteca.Emprestimo;
 import java.time.LocalDate;
+
+import biblioteca.Biblioteca;
+//import biblioteca.multimidia.Livro;
+import biblioteca.multimidia.Multimidia;
+import pessoa.funcionario.Administradores;
+import pessoa.funcionario.Funcionario;
 
 public abstract class Pessoa {
     
@@ -16,12 +17,12 @@ public abstract class Pessoa {
     protected String contato;
     protected LocalDate dataRegistro;
 
-    // Attr a serem especificados
     protected Multimidia[] multimidiasEmprestadas;
     private int qtdMidiasEmprestadas = 0;
 
     protected int prazoEmprestimo;
     protected double valorMulta;
+    protected double totalMulta;
     
     protected boolean bloqueado = false;
     protected Biblioteca lib;
@@ -50,6 +51,10 @@ public abstract class Pessoa {
     public String getContato() { return contato; }
     public void setContato(String contato) { this.contato = contato; }
 
+    public double getTotalMulta() { return totalMulta; }
+    public void setTotalMulta(double totalMulta) { this.totalMulta = totalMulta; }
+
+    
     public LocalDate getDataRegistro() { return dataRegistro; }
     
     public Multimidia[] getMultimidiasEmprestadas() { return multimidiasEmprestadas; }
@@ -96,5 +101,9 @@ public abstract class Pessoa {
     
     public void solicitarRenovacao(Multimidia item, Funcionario f){
         f.renovacao(item);
+    }
+
+    public void solicitarReserva(Administradores adm, Multimidia item){
+        adm.reservar(this, item);
     }
 }    
