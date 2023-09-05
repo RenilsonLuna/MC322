@@ -75,7 +75,6 @@ public class Biblioteca {
     public void removerEmprestimo(Emprestimo emp){
         int qtdEmp = Emprestimo.getQtdEmprestimos();
         for(int i = 0; i < qtdEmp; i++){
-            // System.out.println(this.emprestimos[i]);
             if (this.emprestimos[i] != null && emp.getCodigoEmprestimo() == this.emprestimos[i].getCodigoEmprestimo()){
                 
                 this.emprestimos[i] = this.emprestimos[qtdEmp - 1];
@@ -88,4 +87,16 @@ public class Biblioteca {
     }
     
     public Emprestimo[] getEmprestimos() { return emprestimos; }
+
+    public void AdicionarReserva(Pessoa usuario, Multimidia midia){
+        int i;
+        for(i = 0; i< Emprestimo.getQtdEmprestimos(); i++){// Casas invalidas
+            if(emprestimos[i].item == midia){// poderia colocar a edição tbm caso quisesse 
+                emprestimos[i].item.setReserva(usuario);
+            }
+            
+            System.out.println("O item:" + emprestimos[i].getItem().getTitulo() +" foi reservado para Sr(a)"+ usuario.getNome()+ "A previsão de entrega para " + emprestimos[i].getItem().getDataEntrega());
+
+        }
+    }
 }
