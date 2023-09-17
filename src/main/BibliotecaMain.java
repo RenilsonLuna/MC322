@@ -7,13 +7,24 @@ import biblioteca.views.*;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class BibliotecaMain {
     private static BibliotecaController bibliotecaController;
     private static MembroController membroController;
     private static RelatorioController relatorioController;
 
     public static void main(String[] args) {
-        bibliotecaController = new BibliotecaControllerImpl();
+
+        // int idMultimidia, String titulo, String detalhes, String[] autores, String genero, String editora, int edicao,
+        //     String isbn, int tombo, int qtdCopias
+
+        Biblioteca lib = new Biblioteca("Cesar Lattes", "21321165123156");
+        lib.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523, 3));
+        lib.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553, 2));
+        lib.adicionarMidia(new LivroFisico(2, "Os lobos", "Livro de bolso", "Joao pop, Neto silva", "Comedia", "LPM", 0, "7kp21", 135578, 9));
+        lib.adicionarMidia(new LivroFisico(3, "Além do mal e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523, 3));
+        
+        bibliotecaController = new BibliotecaControllerImpl(lib);
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
 
@@ -24,6 +35,9 @@ public class BibliotecaMain {
         Scanner scanner = new Scanner(System.in);
         
         while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) { }
             System.out.println("---- Menu Biblioteca ----");
             System.out.println();
             System.out.println("1. Gerenciamento de Itens");
@@ -67,6 +81,9 @@ public class BibliotecaMain {
 
     private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) {
         while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) { }
             System.out.println("---- Menu Gerenciamento de Itens ----");
             System.out.println();
             System.out.println("1. Listar Itens Disponíveis");
@@ -86,7 +103,7 @@ public class BibliotecaMain {
 
             switch (opcaoItens) {
                 case 1:
-                    List<ItemMultimidia> itens = bibliotecaController.consultarItensDisponiveis();
+                    List<ItemMultimidiaImpl> itens = bibliotecaController.consultarItensDisponiveis();
                     bibliotecaView.mostrarItensDisponiveis(itens);
                     break;
                 case 2:

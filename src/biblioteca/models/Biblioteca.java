@@ -1,11 +1,13 @@
 package biblioteca.models;
 
+import java.util.*;
+
 public class Biblioteca {
 
     private String nome;
     private String cnpj;
 
-    private ItemMultimidiaImpl[] midias = new ItemMultimidiaImpl[50000];
+    private List<ItemMultimidiaImpl> itens = new ArrayList<>();
     private int qtdMidias = 0;
     
     private Pessoa[] membros = new Pessoa[200000];
@@ -20,6 +22,8 @@ public class Biblioteca {
 
     public String getNome() { return nome; }
     public String getCnpj() { return cnpj; }
+
+    public List<ItemMultimidiaImpl> getItens(){ return itens; }
 
     public int getQtdMembros() { return qtdMembros; }
     public void setQtdMembros(int qtd){ this.qtdMembros = qtd; }
@@ -39,18 +43,12 @@ public class Biblioteca {
     }
 
     public void adicionarMidia(ItemMultimidiaImpl midia){
-        int qtd = ItemMultimidiaImpl.getQtdMidias(); 
-
-        if (qtd < 50000){
-            // toda midia criada eh adicionada na biblioteca, assim qtd sempre sera o ultimo elemento do vetor
-            midias[getQtdMidias()] = midia;
-            setQtdMidias(getQtdMidias()+1);
-        }else{
-            System.out.println("Biblioteca cheia. Livro nao adicionado!");
-        }
+        itens.add(midia);
     }
 
-    public void removerMidia(ItemMultimidiaImpl midia){ }
+    public void removerMidia(ItemMultimidiaImpl midia){ 
+        itens.remove(midia);
+    }
     
     public void cadastrarMembro(Pessoa pessoa){
         if (getQtdMembros() < 100000){

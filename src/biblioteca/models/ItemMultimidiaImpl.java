@@ -6,7 +6,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     private int idMultimidia;
     private String titulo;
     private String detalhes;
-    private String[] autores;
+    private String autores;
     private String genero;
     private LocalDate dataEntrada;
     private LocalDate dataEntrega;
@@ -15,7 +15,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     private static int qtdMidias;
     protected Pessoa reserva;
     
-    public ItemMultimidiaImpl(int idMultimidia, String titulo, String detalhes, String[] autores, String genero) {
+    public ItemMultimidiaImpl(int idMultimidia, String titulo, String detalhes, String autores, String genero) {
         this.idMultimidia = idMultimidia;
         this.titulo = titulo;
         this.detalhes = detalhes;
@@ -41,8 +41,8 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String[] getAutores() { return autores; }
-    public void setAutores(String[] autores) { this.autores = autores; }
+    public String getAutores() { return autores; }
+    public void setAutores(String autores) { this.autores = autores; }
     
     public String getGenero() { return genero; }
     public void setGenero(String genero) { this.genero = genero; }
@@ -62,8 +62,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     public static int getQtdMidias(){ return qtdMidias; }
 
     // Outras funcoes
-    protected int numCopiasDisponivel(ItemMultimidiaImpl multiimdia, int edicao){
+    public int numCopiasDisponivel(ItemMultimidiaImpl multiimdia, int edicao){
         return 0;
     }
-    
 }
