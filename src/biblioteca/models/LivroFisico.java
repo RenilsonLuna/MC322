@@ -8,7 +8,7 @@ public class LivroFisico extends ItemMultimidiaImpl{
     private int qtdCopias;
     private static int qtdLivrosFisicos = 0;
 
-    public LivroFisico(int idMultimidia, String titulo, String detalhes, String[] autores, String genero, String editora, int edicao,
+    public LivroFisico(int idMultimidia, String titulo, String detalhes, String autores, String genero, String editora, int edicao,
             String isbn, int tombo, int qtdCopias) {
         super(idMultimidia, titulo, detalhes, autores, genero);
         this.editora = editora;

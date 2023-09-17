@@ -9,7 +9,7 @@ public class Cd extends ItemMultimidiaImpl{
     private static int qtdCds = 0;
 
 
-    public Cd(int idMultimidia, String titulo, String detalhes, String[] autores, String genero, int armazenamento, String distribuidora,
+    public Cd(int idMultimidia, String titulo, String detalhes, String autores, String genero, int armazenamento, String distribuidora,
             int duracao) {
         super(idMultimidia, titulo, detalhes, autores, genero);
         this.armazenamento = armazenamento;

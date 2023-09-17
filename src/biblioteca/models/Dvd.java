@@ -1,6 +1,7 @@
 package biblioteca.models;
 
 public class Dvd extends ItemMultimidiaImpl{
+    
     // Padrao em megabytes
     private int armazenamento;
     private String distribuidora;
@@ -8,7 +9,7 @@ public class Dvd extends ItemMultimidiaImpl{
     private boolean colorido;
     private static int qtdDvd = 0;
 
-    public Dvd(int idMultimidia, String titulo, String detalhes, String[] autores, String genero, int armazenamento,
+    public Dvd(int idMultimidia, String titulo, String detalhes, String autores, String genero, int armazenamento,
             String distribuidora, int duracao, boolean colorido) {
         super(idMultimidia, titulo, detalhes, autores, genero);
         this.armazenamento = armazenamento;
