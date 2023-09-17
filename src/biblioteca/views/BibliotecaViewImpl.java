@@ -3,7 +3,7 @@ package biblioteca.views;
 import java.util.List;
 
 import biblioteca.controllers.BibliotecaController;
-import biblioteca.models.ItemMultimidia;
+import biblioteca.models.ItemMultimidiaImpl;
 
 public class BibliotecaViewImpl implements BibliotecaView {
     private BibliotecaController bibliotecaController;
@@ -13,8 +13,16 @@ public class BibliotecaViewImpl implements BibliotecaView {
     }
 
     @Override
-    public void mostrarItensDisponiveis(List<ItemMultimidia> itens) {
-        // Implementação da exibição de itens disponíveis
+    public void mostrarItensDisponiveis(List<ItemMultimidiaImpl> itens) {
+        if (itens.isEmpty()){
+            System.out.println("Lista de Itens vazia.");
+        }else{
+            System.out.println("------ Itens disponíveis ------");
+
+            for(ItemMultimidiaImpl item : itens){
+                System.out.println(item.getIdMultimidia() + ". " + item.getTitulo() + " - " + item.getAutores());
+            }
+        }
     }
 
     @Override
