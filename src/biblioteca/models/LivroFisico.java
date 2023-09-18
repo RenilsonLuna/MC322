@@ -5,17 +5,15 @@ public class LivroFisico extends ItemMultimidiaImpl{
     private int edicao;
     private String isbn;
     private int tombo;
-    private int qtdCopias;
     private static int qtdLivrosFisicos = 0;
 
     public LivroFisico(int idMultimidia, String titulo, String detalhes, String autores, String genero, String editora, int edicao,
-            String isbn, int tombo, int qtdCopias) {
+            String isbn, int tombo) {
         super(idMultimidia, titulo, detalhes, autores, genero);
         this.editora = editora;
         this.edicao = edicao;
         this.isbn = isbn;
         this.tombo = tombo;
-        this.qtdCopias = qtdCopias;
         qtdLivrosFisicos++;
     }
     
@@ -32,5 +30,4 @@ public class LivroFisico extends ItemMultimidiaImpl{
     public void setTombo(int tombo) { this.tombo = tombo; }
 
     public static int getQtdLivrosFisicos() { return qtdLivrosFisicos; }
-    public int getQtdCopias() { return qtdCopias; }
 }
