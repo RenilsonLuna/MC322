@@ -11,6 +11,7 @@ import biblioteca.models.Membro;
 public interface BibliotecaController {
     List<ItemMultimidiaImpl> consultarItensDisponiveis();
     boolean adicionarItem(Scanner scanner);
+    boolean removerItem(Scanner scanner);
     boolean emprestarItem(Membro membro, ItemMultimidiaImpl item);
     boolean devolverItem(Membro membro, ItemMultimidiaImpl item);
 }

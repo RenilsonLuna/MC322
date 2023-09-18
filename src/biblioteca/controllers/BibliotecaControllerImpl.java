@@ -1,11 +1,14 @@
 package biblioteca.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.models.Biblioteca;
+import biblioteca.models.Cd;
+import biblioteca.models.Dvd;
 import biblioteca.models.ItemMultimidiaImpl;
-import biblioteca.models.LivroDigital;
+// import biblioteca.models.LivroDigital;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.Membro;
 
@@ -68,17 +71,68 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
                 LivroFisico l = new LivroFisico(id, titulo, detalhes, autores, genero, editora, edicao, isbn, tombo);
                 lib.adicionarMidia(l);
-                System.out.println("Livro fisico Adicionado");
+                System.out.println("Livro Adicionado!");
                 consultarItensDisponiveis();
                 break;
-        
+            
+            case 2: 
+                // Livro digital
+                break;
+            case 3:
+                System.out.print("Armazenamento: ");
+                int armazenamento = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Distribuidora: ");
+                String distribuidora = scanner.nextLine();
+
+                System.out.print("Duração");
+                int duracao = scanner.nextInt();
+                scanner.nextLine();
+                
+                Cd cd = new Cd(id, titulo, detalhes, autores, genero, armazenamento, distribuidora, duracao);
+                lib.adicionarMidia(cd);
+                System.out.print("CD adicionado!");
+                break;
+            case 4:
+                
+                System.out.print("Armazenamento: ");
+                int armazenamento2 = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Duracao: ");
+                int duracao2 = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Distribuidora: ");
+                String distribuidora2 = scanner.nextLine();
+
+                boolean colorido = scanner.nextBoolean();
+
+                Dvd dvd = new Dvd(id, titulo, detalhes, autores, genero, armazenamento2, distribuidora2, duracao2, colorido);
+
+                lib.adicionarMidia(dvd);
+                break;
             default:
                 break;
         }
-
-
-        
         return true;
+    }
+
+    @Override
+    public boolean removerItem(Scanner scanner){
+
+        System.out.print("Id do item: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        for(ItemMultimidiaImpl it : itens){
+            if (it.getIdMultimidia() == id){
+                lib.removerMidia(it);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
