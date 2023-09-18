@@ -287,7 +287,7 @@ public class BibliotecaMain {
     }
 
     private static void removerItem(Scanner scanner) {
-        // Lógica para remover um item
+        bibliotecaController.removerItem(scanner);
         System.out.println("Operação de Remoção de Item");
     }
 
