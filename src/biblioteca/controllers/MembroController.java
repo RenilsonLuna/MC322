@@ -8,5 +8,4 @@ import biblioteca.models.Membro;
 public interface MembroController {
     List<Membro> listarMembros();
     Membro buscarMembroPorIdentificacao(String identificacao);
-    boolean adicionarMembro(Scanner scanner);
 }
