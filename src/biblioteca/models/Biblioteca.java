@@ -8,10 +8,8 @@ public class Biblioteca {
     private String cnpj;
 
     private List<ItemMultimidiaImpl> itens = new ArrayList<>();
-    private int qtdMidias = 0;
     
-    private MembroImpl[] membros = new MembroImpl[200000];
-    private int qtdMembros = 0;
+    private List<MembroImpl> membros = new ArrayList<>();
 
     private Emprestimo[] emprestimos = new Emprestimo[10000];
 
@@ -25,20 +23,18 @@ public class Biblioteca {
 
     public List<ItemMultimidiaImpl> getItens(){ return itens; }
 
-    public int getQtdMembros() { return qtdMembros; }
-    public void setQtdMembros(int qtd){ this.qtdMembros = qtd; }
+    public List<MembroImpl> getMembros(){ return membros; }
+    public int getQtdMembros() { return membros.size(); }
 
-    public int getQtdMidias() { return qtdMidias; }
-    public void setQtdMidias(int qtd) { this.qtdMidias = qtd; }
+    public int getQtdMidias() { return itens.size(); }
     
     // Outros Metodos
     public boolean verificaDisponibilidade(ItemMultimidiaImpl multimidia){ return true; }
     
-    public boolean isMembro (MembroImpl p){
-        for(int i = 0; i < getQtdMembros(); i++){
-            if (membros[i].getRa() == p.getRa())
+    public boolean isMembro (MembroImpl membro){
+        for(MembroImpl m : membros)
+            if (m.getRa() == membro.getRa())
                 return true;
-        }
         return false;
     }
 
@@ -52,12 +48,12 @@ public class Biblioteca {
     
 
     // Operacoes sobre os membros
-    public void cadastrarMembro(MembroImpl pessoa){
-        if (getQtdMembros() < 100000){
-            membros[getQtdMembros()] = pessoa;
-            setQtdMembros(qtdMembros+1);
-        }else
-            System.out.println("Quantidade maxima de usuarios lotada");
+    public void cadastrarMembro(MembroImpl membro){
+        membros.add(membro);
+    }
+
+    public void removerMembro(MembroImpl membro){
+        membros.remove(membro);
     }
 
 
