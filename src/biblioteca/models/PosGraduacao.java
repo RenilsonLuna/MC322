@@ -1,6 +1,6 @@
 package biblioteca.models;
 
-public class PosGraduacao extends Pessoa {
+public class PosGraduacao extends MembroImpl {
     private StrictoSensu nivel;// mestrado ou Doutorado
     private String insituto;
 

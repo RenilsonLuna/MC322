@@ -1,7 +1,6 @@
 package biblioteca.controllers;
 
 import java.util.List;
-import java.util.Scanner;
 
 import biblioteca.models.Membro;
 

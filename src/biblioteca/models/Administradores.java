@@ -10,22 +10,22 @@ public final class Administradores extends Funcionario {
     }
 
     // cadastrar membro
-    public void cadastraUsuario(Pessoa usario, Biblioteca lib){ }
+    public void cadastraUsuario(MembroImpl usario, Biblioteca lib){ }
 
-    public void reservar(Biblioteca lib,String tipo, String nomeTitulo, Pessoa usuario){ }
+    public void reservar(Biblioteca lib,String tipo, String nomeTitulo, MembroImpl usuario){ }
 
-    public void aplicarMulta(Pessoa usuario, ItemMultimidiaImpl item){ 
+    public void aplicarMulta(MembroImpl usuario, ItemMultimidiaImpl item){ 
         long diasPassados = ChronoUnit.DAYS.between(item.getDataEntrega(), LocalDate.now());
         double multa = diasPassados * usuario.getValorMulta();
         System.out.println("Sr(a)"+ usuario.getNome() + "foi multado com o valor de: " + multa + " pois ficou " + diasPassados + "em atraso");
         usuario.setTotalMulta(multa);
     }
 
-    public void reservar(Pessoa usuario, ItemMultimidiaImpl midia){ 
+    public void reservar(MembroImpl usuario, ItemMultimidiaImpl midia){ 
         lib.AdicionarReserva(usuario, midia);
     }
  
-    public void retirarMulta(Pessoa usuario){
+    public void retirarMulta(MembroImpl usuario){
         usuario.setTotalMulta(0.00);
     }
 }

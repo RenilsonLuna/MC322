@@ -28,6 +28,6 @@ public interface ItemMultimidia {
     public String getConservacao();
     public void setConservacao(String conservacao);
 
-    public Pessoa getReserva();
-    public void setReserva(Pessoa reserva);
+    public MembroImpl getReserva();
+    public void setReserva(MembroImpl reserva);
 }

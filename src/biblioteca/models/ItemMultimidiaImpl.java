@@ -13,7 +13,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     private boolean disponivel;
     private String conservacao;
     private static int qtdMidias;
-    protected Pessoa reserva;
+    protected MembroImpl reserva;
     
     public ItemMultimidiaImpl(int idMultimidia, String titulo, String detalhes, String autores, String genero) {
         this.idMultimidia = idMultimidia;
@@ -56,8 +56,8 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     public String getConservacao() { return conservacao; }
     public void setConservacao(String conservacao) { this.conservacao = conservacao; }
 
-    public Pessoa getReserva() { return reserva; }
-    public void setReserva(Pessoa reserva) { this.reserva = reserva; }
+    public MembroImpl getReserva() { return reserva; }
+    public void setReserva(MembroImpl reserva) { this.reserva = reserva; }
 
     public static int getQtdMidias(){ return qtdMidias; }
 

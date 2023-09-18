@@ -2,7 +2,7 @@ package biblioteca.models;
 
 import java.time.LocalDate;
 
-public class Funcionario extends Pessoa{
+public class Funcionario extends MembroImpl{
     
     public Funcionario(String nome, String endereco, String contato, Biblioteca lib){
         super(nome, endereco, contato, lib);
@@ -12,7 +12,7 @@ public class Funcionario extends Pessoa{
         this.valorMulta = 0.75;
     }
 
-    public void emprestar(ItemMultimidiaImpl item, Pessoa usuario){
+    public void emprestar(ItemMultimidiaImpl item, MembroImpl usuario){
         if (item.getDisponivel()
             && usuario.getQtdMidiasEmprestadas() < usuario.getMultimidiasEmprestadas().length 
             && !usuario.getBloqueado()){
@@ -35,7 +35,7 @@ public class Funcionario extends Pessoa{
         }
     }
     
-    public void devolucao(ItemMultimidiaImpl item, Pessoa usuario){
+    public void devolucao(ItemMultimidiaImpl item, MembroImpl usuario){
         item.setDisponivel(true);
         LocalDate dataDeHoje = LocalDate.now();
         int qtdEmprestimos = Emprestimo.getQtdEmprestimos();

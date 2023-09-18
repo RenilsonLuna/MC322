@@ -7,12 +7,12 @@ public class Emprestimo {
 
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
-    protected Pessoa emprestante;
+    protected MembroImpl emprestante;
     private int codigoEmprestimo;
     protected ItemMultimidiaImpl item;
     private static int qtdEmprestimos;
 
-    public Emprestimo(LocalDate dataDevolucao, Pessoa emprestante, ItemMultimidiaImpl item) {
+    public Emprestimo(LocalDate dataDevolucao, MembroImpl emprestante, ItemMultimidiaImpl item) {
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = dataDevolucao;
         this.item = item;
@@ -27,7 +27,7 @@ public class Emprestimo {
 
     public LocalDate getDataEmprestimo() { return dataEmprestimo; }
     
-    public Pessoa getEmprestante(){ return emprestante; }
+    public MembroImpl getEmprestante(){ return emprestante; }
 
     public LocalDate getDataDevolucao() { return dataDevolucao; }
     public void setDataDevolucao(LocalDate novaData){ this.dataDevolucao = novaData; }

@@ -10,7 +10,7 @@ public class Biblioteca {
     private List<ItemMultimidiaImpl> itens = new ArrayList<>();
     private int qtdMidias = 0;
     
-    private Pessoa[] membros = new Pessoa[200000];
+    private MembroImpl[] membros = new MembroImpl[200000];
     private int qtdMembros = 0;
 
     private Emprestimo[] emprestimos = new Emprestimo[10000];
@@ -34,7 +34,7 @@ public class Biblioteca {
     // Outros Metodos
     public boolean verificaDisponibilidade(ItemMultimidiaImpl multimidia){ return true; }
     
-    public boolean isMembro (Pessoa p){
+    public boolean isMembro (MembroImpl p){
         for(int i = 0; i < getQtdMembros(); i++){
             if (membros[i].getRa() == p.getRa())
                 return true;
@@ -50,7 +50,9 @@ public class Biblioteca {
         itens.remove(midia);
     }
     
-    public void cadastrarMembro(Pessoa pessoa){
+
+    // Operacoes sobre os membros
+    public void cadastrarMembro(MembroImpl pessoa){
         if (getQtdMembros() < 100000){
             membros[getQtdMembros()] = pessoa;
             setQtdMembros(qtdMembros+1);
@@ -58,6 +60,8 @@ public class Biblioteca {
             System.out.println("Quantidade maxima de usuarios lotada");
     }
 
+
+    // Operacoes sobre os emprestimos
     public void adicionarEmprestimo(Emprestimo novoEmprestimo) {
         if (Emprestimo.getQtdEmprestimos() < emprestimos.length) 
             if (Emprestimo.getQtdEmprestimos() == 0)
@@ -83,7 +87,7 @@ public class Biblioteca {
     
     public Emprestimo[] getEmprestimos() { return emprestimos; }
 
-    public void AdicionarReserva(Pessoa usuario, ItemMultimidiaImpl midia){
+    public void AdicionarReserva(MembroImpl usuario, ItemMultimidiaImpl midia){
         int i;
         for(i = 0; i< Emprestimo.getQtdEmprestimos(); i++){// Casas invalidas
             if(emprestimos[i].item == midia){// poderia colocar a edição tbm caso quisesse 

@@ -1,6 +1,6 @@
 package biblioteca.models;
 
-public class Graduacao extends Pessoa{
+public class Graduacao extends MembroImpl{
     
     public Graduacao(String nome, String endereco, String contato, Biblioteca lib){
         super(nome, endereco, contato, lib);

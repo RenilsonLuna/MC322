@@ -2,7 +2,7 @@ package biblioteca.models;
 // import biblioteca.Emprestimo;
 import java.time.LocalDate;
 
-public abstract class Pessoa {
+public abstract class MembroImpl implements Membro{
     
     protected String nome;
     protected int ra;
@@ -21,7 +21,7 @@ public abstract class Pessoa {
     protected boolean bloqueado = false;
     protected Biblioteca lib;
 
-    public Pessoa(String nome, String endereco, String contato, Biblioteca lib) {
+    public MembroImpl(String nome, String endereco, String contato, Biblioteca lib) {
         this.nome = nome;
         this.ra = contagemRa;
         this.endereco = endereco;

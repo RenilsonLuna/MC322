@@ -1,6 +1,6 @@
 package biblioteca.models;
 
-public class Professor extends Pessoa {
+public class Professor extends MembroImpl {
     String disciplina;
 
     public Professor(String disciplina, String nome, String endereco, String contato, Biblioteca lib){
