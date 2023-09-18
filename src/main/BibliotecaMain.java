@@ -19,11 +19,9 @@ public class BibliotecaMain {
         //     String isbn, int tombo, int qtdCopias
 
         Biblioteca lib = new Biblioteca("Cesar Lattes", "21321165123156");
-        lib.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523, 3));
-        lib.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553, 2));
-        lib.adicionarMidia(new LivroFisico(2, "Os lobos", "Livro de bolso", "Joao pop, Neto silva", "Comedia", "LPM", 0, "7kp21", 135578, 9));
-        lib.adicionarMidia(new LivroFisico(3, "Além do mal e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523, 3));
-        
+        lib.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523));
+        lib.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553));
+       
         bibliotecaController = new BibliotecaControllerImpl(lib);
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
@@ -35,9 +33,7 @@ public class BibliotecaMain {
         Scanner scanner = new Scanner(System.in);
         
         while (true) {
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) { }
+            
             System.out.println("---- Menu Biblioteca ----");
             System.out.println();
             System.out.println("1. Gerenciamento de Itens");
@@ -81,9 +77,6 @@ public class BibliotecaMain {
 
     private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) {
         while (true) {
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) { }
             System.out.println("---- Menu Gerenciamento de Itens ----");
             System.out.println();
             System.out.println("1. Listar Itens Disponíveis");
@@ -97,10 +90,10 @@ public class BibliotecaMain {
             System.out.println();
             System.out.println();
             System.out.print("Escolha uma opção: ");
-
+            
             int opcaoItens = scanner.nextInt();
             scanner.nextLine();
-
+            
             switch (opcaoItens) {
                 case 1:
                     List<ItemMultimidiaImpl> itens = bibliotecaController.consultarItensDisponiveis();
@@ -128,7 +121,10 @@ public class BibliotecaMain {
                     return;
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
-            }
+                }
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) { }
         }
     }
 
@@ -281,7 +277,7 @@ public class BibliotecaMain {
 
     // Métodos para adicionar, editar e remover itens e membros
     private static void adicionarItem(Scanner scanner) {
-        // Lógica para adicionar um novo item
+        bibliotecaController.adicionarItem(scanner);
         System.out.println("Operação de Adição de Item");
     }
 
