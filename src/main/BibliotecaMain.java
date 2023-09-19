@@ -23,7 +23,7 @@ public class BibliotecaMain {
         lib.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553));
        
         bibliotecaController = new BibliotecaControllerImpl(lib);
-        membroController = new MembroControllerImpl();
+        membroController = new MembroControllerImpl(lib);
         relatorioController = new RelatorioControllerImpl();
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
@@ -146,7 +146,7 @@ public class BibliotecaMain {
 
             switch (opcaoMembros) {
                 case 1:
-                    List<Membro> membros = membroController.listarMembros();
+                    List<MembroImpl> membros = membroController.listarMembros();
                     membroView.mostrarListaMembros(membros);
                     break;
                 case 2:
@@ -292,7 +292,8 @@ public class BibliotecaMain {
     }
 
     private static void adicionarMembro(Scanner scanner) {
-        // Lógica para adicionar um novo membro
+        
+        membroController.adicionarMembro(scanner);
         System.out.println("Operação de Adição de Membro");
     }
 
@@ -302,7 +303,11 @@ public class BibliotecaMain {
     }
 
     private static void removerMembro(Scanner scanner) {
-        // Lógica para remover um membro
+        System.out.print("RA do membro: ");
+        int ra = scanner.nextInt();
+        scanner.nextLine();
+
+        membroController.removerMembro(ra);
         System.out.println("Operação de Remoção de Membro");
     }
 
