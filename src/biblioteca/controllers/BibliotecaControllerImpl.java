@@ -1,18 +1,14 @@
 package biblioteca.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-import biblioteca.models.Biblioteca;
-import biblioteca.models.Cd;
-import biblioteca.models.Dvd;
-import biblioteca.models.ItemMultimidiaImpl;
-// import biblioteca.models.LivroDigital;
-import biblioteca.models.LivroFisico;
-import biblioteca.models.Membro;
+import biblioteca.models.*;
+
 
 public class BibliotecaControllerImpl implements BibliotecaController {
-    private List<ItemMultimidiaImpl> itens;
+    private Map<Integer, ItemMultimidiaImpl> itens;
     private Biblioteca lib;
 
     public BibliotecaControllerImpl(Biblioteca lib){
@@ -120,22 +116,20 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
     @Override
     public boolean removerItem(Scanner scanner){
-
-        System.out.print("Id do item: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
-        for(ItemMultimidiaImpl it : itens){
-            if (it.getIdMultimidia() == id){
-                lib.removerMidia(it);
-                return true;
-            }
+        try {
+            System.out.print("Id do item: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+            itens.remove(id);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
+        
     }
 
     @Override
-    public List<ItemMultimidiaImpl> consultarItensDisponiveis() {
+    public Map<Integer, ItemMultimidiaImpl> consultarItensDisponiveis() {
         return itens;
     }
 

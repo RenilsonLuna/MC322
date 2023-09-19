@@ -7,7 +7,7 @@ public class Biblioteca {
     private String nome;
     private String cnpj;
 
-    private List<ItemMultimidiaImpl> itens = new ArrayList<>();
+    private Map<Integer, ItemMultimidiaImpl> itens = new HashMap<>();
     
     private List<MembroImpl> membros = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class Biblioteca {
     public String getNome() { return nome; }
     public String getCnpj() { return cnpj; }
 
-    public List<ItemMultimidiaImpl> getItens(){ return itens; }
+    public Map<Integer, ItemMultimidiaImpl> getItens(){ return itens; }
 
     public List<MembroImpl> getMembros(){ return membros; }
     public int getQtdMembros() { return membros.size(); }
@@ -38,12 +38,13 @@ public class Biblioteca {
         return false;
     }
 
+    // Operacoes sobre as midias
     public void adicionarMidia(ItemMultimidiaImpl midia){
-        itens.add(midia);
+        itens.put(midia.getIdMultimidia(), midia);
     }
 
     public void removerMidia(ItemMultimidiaImpl midia){ 
-        itens.remove(midia);
+        itens.remove(midia.getIdMultimidia());
     }
     
 

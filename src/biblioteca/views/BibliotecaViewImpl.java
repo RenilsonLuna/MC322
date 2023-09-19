@@ -1,6 +1,6 @@
 package biblioteca.views;
 
-import java.util.List;
+import java.util.Map;
 
 import biblioteca.controllers.BibliotecaController;
 import biblioteca.models.ItemMultimidiaImpl;
@@ -13,13 +13,14 @@ public class BibliotecaViewImpl implements BibliotecaView {
     }
 
     @Override
-    public void mostrarItensDisponiveis(List<ItemMultimidiaImpl> itens) {
+    public void mostrarItensDisponiveis(Map<Integer, ItemMultimidiaImpl> itens) {
+
         if (itens.isEmpty()){
             System.out.println("Lista de Itens vazia.");
         }else{
             System.out.println("------ Itens disponíveis ------");
 
-            for(ItemMultimidiaImpl item : itens){
+            for(ItemMultimidiaImpl item : itens.values()){
                 System.out.println(item.getIdMultimidia() + ". " + item.getTitulo() + " - " + item.getAutores());
             }
         }

@@ -1,11 +1,24 @@
 package main;
 
-import biblioteca.controllers.*;
-import biblioteca.models.*;
-import biblioteca.views.*;
-
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+
+import biblioteca.controllers.BibliotecaController;
+import biblioteca.controllers.BibliotecaControllerImpl;
+import biblioteca.controllers.MembroController;
+import biblioteca.controllers.MembroControllerImpl;
+import biblioteca.controllers.RelatorioController;
+import biblioteca.controllers.RelatorioControllerImpl;
+import biblioteca.models.Biblioteca;
+import biblioteca.models.ItemMultimidiaImpl;
+import biblioteca.models.LivroFisico;
+import biblioteca.models.MembroImpl;
+import biblioteca.views.BibliotecaView;
+import biblioteca.views.BibliotecaViewImpl;
+import biblioteca.views.MembroView;
+import biblioteca.views.MembroViewImpl;
+import biblioteca.views.RelatorioView;
 
 
 public class BibliotecaMain {
@@ -96,7 +109,7 @@ public class BibliotecaMain {
             
             switch (opcaoItens) {
                 case 1:
-                    List<ItemMultimidiaImpl> itens = bibliotecaController.consultarItensDisponiveis();
+                    Map<Integer, ItemMultimidiaImpl> itens = bibliotecaController.consultarItensDisponiveis();
                     bibliotecaView.mostrarItensDisponiveis(itens);
                     break;
                 case 2:
