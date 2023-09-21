@@ -1,10 +1,16 @@
 package biblioteca.controllers;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import biblioteca.models.*;
+import biblioteca.models.Biblioteca;
+import biblioteca.models.Cd;
+import biblioteca.models.Dvd;
+import biblioteca.models.Emprestimo;
+import biblioteca.models.ItemMultimidiaImpl;
+import biblioteca.models.LivroFisico;
+import biblioteca.models.Membro;
+import biblioteca.models.MembroImpl;
 
 
 public class BibliotecaControllerImpl implements BibliotecaController {
@@ -132,14 +138,24 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     }
 
     @Override
-    public boolean emprestarItem(Membro membro, ItemMultimidiaImpl item) {
-        // Lógica de empréstimo
+    public boolean emprestarItem(MembroImpl membro, ItemMultimidiaImpl item) {
+        Emprestimo emp = new Emprestimo(membro, item);
+        Biblioteca.adicionarEmprestimo(emp);
         return true;
     }
 
     @Override
-    public boolean devolverItem(Membro membro, ItemMultimidiaImpl item) {
-        // Lógica de devolução
-        return true;
+    public boolean devolverItem(ItemMultimidiaImpl item) {
+        Emprestimo[] emprestimos = Biblioteca.getEmprestimos();
+        Emprestimo emp = null;
+        for (Emprestimo m : emprestimos){
+            if (m.getItem().getIdMultimidia() == item.getIdMultimidia())
+                emp = m;
+        }
+        if (emp != null){
+            Biblioteca.removerEmprestimo(emp);
+            return true;
+        }else
+            return false;
     }
 }
