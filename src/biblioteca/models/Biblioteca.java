@@ -4,34 +4,23 @@ import java.util.*;
 
 public class Biblioteca {
 
-    private String nome;
-    private String cnpj;
-
-    private Map<Integer, ItemMultimidiaImpl> itens = new HashMap<>();
+    private static Map<Integer, ItemMultimidiaImpl> itens = new HashMap<>();
     
-    private List<MembroImpl> membros = new ArrayList<>();
+    private static List<MembroImpl> membros = new ArrayList<>();
 
-    private Emprestimo[] emprestimos = new Emprestimo[10000];
+    private static Emprestimo[] emprestimos = new Emprestimo[10000];
 
-    public Biblioteca(String nome, String cnpj){
-        this.nome = nome;
-        this.cnpj = cnpj;
-    }
+    public static Map<Integer, ItemMultimidiaImpl> getItens(){ return itens; }
 
-    public String getNome() { return nome; }
-    public String getCnpj() { return cnpj; }
+    public static List<MembroImpl> getMembros(){ return membros; }
+    public static int getQtdMembros() { return membros.size(); }
 
-    public Map<Integer, ItemMultimidiaImpl> getItens(){ return itens; }
-
-    public List<MembroImpl> getMembros(){ return membros; }
-    public int getQtdMembros() { return membros.size(); }
-
-    public int getQtdMidias() { return itens.size(); }
+    public static int getQtdMidias() { return itens.size(); }
     
     // Outros Metodos
-    public boolean verificaDisponibilidade(ItemMultimidiaImpl multimidia){ return true; }
+    public static boolean verificaDisponibilidade(ItemMultimidiaImpl multimidia){ return true; }
     
-    public boolean isMembro (MembroImpl membro){
+    public static boolean isMembro (MembroImpl membro){
         for(MembroImpl m : membros)
             if (m.getRa() == membro.getRa())
                 return true;
@@ -39,27 +28,27 @@ public class Biblioteca {
     }
 
     // Operacoes sobre as midias
-    public void adicionarMidia(ItemMultimidiaImpl midia){
+    public static void adicionarMidia(ItemMultimidiaImpl midia){
         itens.put(midia.getIdMultimidia(), midia);
     }
 
-    public void removerMidia(ItemMultimidiaImpl midia){ 
+    public static void removerMidia(ItemMultimidiaImpl midia){ 
         itens.remove(midia.getIdMultimidia());
     }
     
 
     // Operacoes sobre os membros
-    public void cadastrarMembro(MembroImpl membro){
+    public static void cadastrarMembro(MembroImpl membro){
         membros.add(membro);
     }
 
-    public void removerMembro(MembroImpl membro){
+    public static void removerMembro(MembroImpl membro){
         membros.remove(membro);
     }
 
 
     // Operacoes sobre os emprestimos
-    public void adicionarEmprestimo(Emprestimo novoEmprestimo) {
+    public static void adicionarEmprestimo(Emprestimo novoEmprestimo) {
         if (Emprestimo.getQtdEmprestimos() < emprestimos.length) 
             if (Emprestimo.getQtdEmprestimos() == 0)
                 emprestimos[0] = novoEmprestimo; 
@@ -68,13 +57,13 @@ public class Biblioteca {
     }   
 
 
-    public void removerEmprestimo(Emprestimo emp){
+    public static void removerEmprestimo(Emprestimo emp){
         int qtdEmp = Emprestimo.getQtdEmprestimos();
         for(int i = 0; i < qtdEmp; i++){
-            if (this.emprestimos[i] != null && emp.getCodigoEmprestimo() == this.emprestimos[i].getCodigoEmprestimo()){
+            if (emprestimos[i] != null && emp.getCodigoEmprestimo() == emprestimos[i].getCodigoEmprestimo()){
                 
-                this.emprestimos[i] = this.emprestimos[qtdEmp - 1];
-                this.emprestimos[qtdEmp - 1] = null;
+                emprestimos[i] = emprestimos[qtdEmp - 1];
+                emprestimos[qtdEmp - 1] = null;
 
                 int nvQtd = Emprestimo.getQtdEmprestimos() - 1;
                 Emprestimo.setQtdEmprestimos(nvQtd);
@@ -82,17 +71,8 @@ public class Biblioteca {
         }
     }
     
-    public Emprestimo[] getEmprestimos() { return emprestimos; }
+    public static Emprestimo[] getEmprestimos() { return emprestimos; }
 
-    public void AdicionarReserva(MembroImpl usuario, ItemMultimidiaImpl midia){
-        int i;
-        for(i = 0; i< Emprestimo.getQtdEmprestimos(); i++){// Casas invalidas
-            if(emprestimos[i].item == midia){// poderia colocar a edição tbm caso quisesse 
-                emprestimos[i].item.setReserva(usuario);
-            }
-            
-            System.out.println("O item:" + emprestimos[i].getItem().getTitulo() +" foi reservado para Sr(a)"+ usuario.getNome()+ "A previsão de entrega para " + emprestimos[i].getItem().getDataEntrega());
-
-        }
+    public static void AdicionarReserva(MembroImpl usuario, ItemMultimidiaImpl midia){
     }
 }

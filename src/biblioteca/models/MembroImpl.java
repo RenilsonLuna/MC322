@@ -19,14 +19,12 @@ public abstract class MembroImpl implements Membro{
     protected double totalMulta;
     
     protected boolean bloqueado = false;
-    protected Biblioteca lib;
 
-    public MembroImpl(String nome, String endereco, String contato, Biblioteca lib) {
+    public MembroImpl(String nome, String endereco, String contato) {
         this.nome = nome;
         this.ra = contagemRa;
         this.endereco = endereco;
         this.contato = contato;
-        this.lib = lib;
         this.dataRegistro = LocalDate.now();
 
         contagemRa++;
@@ -52,8 +50,6 @@ public abstract class MembroImpl implements Membro{
     public LocalDate getDataRegistro() { return dataRegistro; }
     
     public ItemMultimidiaImpl[] getMultimidiasEmprestadas() { return multimidiasEmprestadas; }
-    
-    public Biblioteca getLib() { return lib; }
 
     public int getPrazoEmprestimo() { return prazoEmprestimo; }
 

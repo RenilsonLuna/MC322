@@ -6,20 +6,17 @@ import java.util.Scanner;
 import biblioteca.models.*;
 
 public class MembroControllerImpl implements MembroController {
-    private Biblioteca lib;
 
-    public MembroControllerImpl(Biblioteca lib) {
-        this.lib = lib;
-    }
+    public MembroControllerImpl() { }
 
     @Override
     public List<MembroImpl> listarMembros() {
-        return lib.getMembros();
+        return Biblioteca.getMembros();
     }
 
     @Override
     public MembroImpl buscarMembroPorIdentificacao(int identificacao) {
-        for (MembroImpl m : lib.getMembros())
+        for (MembroImpl m : Biblioteca.getMembros())
             if (m.getRa() == identificacao)
                 return m;
         return null;
@@ -50,20 +47,20 @@ public class MembroControllerImpl implements MembroController {
 
         switch (tipoMembro) {
             case 1:
-                Atendente a = new Atendente(nome, endereco, contato, lib);
-                lib.cadastrarMembro(a);
+                Atendente a = new Atendente(nome, endereco, contato);
+                Biblioteca.cadastrarMembro(a);
                 break;
             case 2:
-                Gerente g = new Gerente(nome, tipoMembro, endereco, contato, lib);
-                lib.cadastrarMembro(g);
+                Gerente g = new Gerente(nome, tipoMembro, endereco, contato);
+                Biblioteca.cadastrarMembro(g);
                 break;
             case 3:
-                Administradores adm = new Administradores(nome, endereco, contato, lib);
-                lib.cadastrarMembro(adm);
+                Administradores adm = new Administradores(nome, endereco, contato);
+                Biblioteca.cadastrarMembro(adm);
                 break;
             case 4:
-                Graduacao grad = new Graduacao(nome, endereco, contato, lib);
-                lib.cadastrarMembro(grad);
+                Graduacao grad = new Graduacao(nome, endereco, contato);
+                Biblioteca.cadastrarMembro(grad);
                 break;
 
             case 5:
@@ -77,8 +74,8 @@ public class MembroControllerImpl implements MembroController {
                 else    
                     s = StrictoSensu.Mestrado;
                 
-                PosGraduacao pos = new PosGraduacao(s, contato, nome, endereco, contato, lib);
-                lib.cadastrarMembro(pos);
+                PosGraduacao pos = new PosGraduacao(s, contato, nome, endereco, contato);
+                Biblioteca.cadastrarMembro(pos);
 
 
             default:
@@ -89,9 +86,9 @@ public class MembroControllerImpl implements MembroController {
     }
 
     public boolean removerMembro(int identificacao){
-        for (MembroImpl m : lib.getMembros()){
+        for (MembroImpl m : Biblioteca.getMembros()){
             if (m.getRa() == identificacao){
-                lib.removerMembro(m);
+                Biblioteca.removerMembro(m);
                 return true;
             }
         }

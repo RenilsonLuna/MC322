@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,6 +13,7 @@ import biblioteca.controllers.MembroControllerImpl;
 import biblioteca.controllers.RelatorioController;
 import biblioteca.controllers.RelatorioControllerImpl;
 import biblioteca.models.Biblioteca;
+import biblioteca.models.Emprestimo;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.MembroImpl;
@@ -31,12 +34,11 @@ public class BibliotecaMain {
         // int idMultimidia, String titulo, String detalhes, String[] autores, String genero, String editora, int edicao,
         //     String isbn, int tombo, int qtdCopias
 
-        Biblioteca lib = new Biblioteca("Cesar Lattes", "21321165123156");
-        lib.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523));
-        lib.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553));
+        Biblioteca.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523));
+        Biblioteca.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553));
        
-        bibliotecaController = new BibliotecaControllerImpl(lib);
-        membroController = new MembroControllerImpl(lib);
+        bibliotecaController = new BibliotecaControllerImpl();
+        membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
@@ -274,7 +276,7 @@ public class BibliotecaMain {
 
     // Métodos para realizar empréstimo, renovação e reserva
     private static void realizarEmprestimo(Scanner scanner) {
-        // Lógica para realizar um empréstimo
+        
         System.out.println("Operação de Empréstimo de Itens");
     }
 

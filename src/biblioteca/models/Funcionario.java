@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Funcionario extends MembroImpl{
     
-    public Funcionario(String nome, String endereco, String contato, Biblioteca lib){
-        super(nome, endereco, contato, lib);
+    public Funcionario(String nome, String endereco, String contato){
+        super(nome, endereco, contato);
 
         this.multimidiasEmprestadas = new ItemMultimidiaImpl[4];
         this.prazoEmprestimo = 20;
@@ -17,9 +17,8 @@ public class Funcionario extends MembroImpl{
             && usuario.getQtdMidiasEmprestadas() < usuario.getMultimidiasEmprestadas().length 
             && !usuario.getBloqueado()){
 
-            LocalDate dataDevolucao = LocalDate.now().plusDays(usuario.getPrazoEmprestimo());
-            Emprestimo emprestimo = new Emprestimo(dataDevolucao, usuario, item);
-            lib.adicionarEmprestimo(emprestimo);
+            Emprestimo emprestimo = new Emprestimo(usuario, item);
+            Biblioteca.adicionarEmprestimo(emprestimo);
             usuario.addMultimidiaEmprestada(item);
             item.setDisponivel(false);
 
@@ -39,7 +38,7 @@ public class Funcionario extends MembroImpl{
         item.setDisponivel(true);
         LocalDate dataDeHoje = LocalDate.now();
         int qtdEmprestimos = Emprestimo.getQtdEmprestimos();
-        Emprestimo[] emprestimos = lib.getEmprestimos();
+        Emprestimo[] emprestimos = Biblioteca.getEmprestimos();
         for(int i = 0; i < qtdEmprestimos; i++){
             if (emprestimos[i] != null && emprestimos[i].getItem() == item){
                 if (dataDeHoje.isBefore(emprestimos[i].getDataDevolucao())){
@@ -47,7 +46,7 @@ public class Funcionario extends MembroImpl{
                 }else{
                     System.out.println("Usuario deve pagar multa de R$" + usuario.getValorMulta());                    
                 }
-                lib.removerEmprestimo(lib.getEmprestimos()[i]);
+                Biblioteca.removerEmprestimo(Biblioteca.getEmprestimos()[i]);
             }
         }
     }
@@ -55,14 +54,14 @@ public class Funcionario extends MembroImpl{
     public void renovacao(ItemMultimidiaImpl item){
         int qtdEmprestimos = Emprestimo.getQtdEmprestimos();
         int i;
-        Emprestimo[] emprestimosLib = lib.getEmprestimos();
+        Emprestimo[] emprestimosBiblioteca = Biblioteca.getEmprestimos();
         for(i = 0; i < qtdEmprestimos; i++){
-            if(emprestimosLib[i] != null && emprestimosLib[i].getItem() == item){
+            if(emprestimosBiblioteca[i] != null && emprestimosBiblioteca[i].getItem() == item){
                 // adicionar reserva
-                LocalDate dataAntiga  = emprestimosLib[i].getDataDevolucao();
-                int diasAMais = emprestimosLib[i].getEmprestante().getPrazoEmprestimo();
+                LocalDate dataAntiga  = emprestimosBiblioteca[i].getDataDevolucao();
+                int diasAMais = emprestimosBiblioteca[i].getEmprestante().getPrazoEmprestimo();
                 LocalDate novaData = dataAntiga.plusDays(diasAMais);
-                emprestimosLib[i].setDataDevolucao(novaData);
+                emprestimosBiblioteca[i].setDataDevolucao(novaData);
                 System.out.println("Devolucao atualizada: de " + dataAntiga + " para " + novaData);
             }
         }

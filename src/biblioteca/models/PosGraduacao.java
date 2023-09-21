@@ -4,8 +4,8 @@ public class PosGraduacao extends MembroImpl {
     private StrictoSensu nivel;// mestrado ou Doutorado
     private String insituto;
 
-    public PosGraduacao(StrictoSensu nivel, String instituto, String nome, String endereco, String contato, Biblioteca lib){
-        super(nome, endereco, contato, lib);
+    public PosGraduacao(StrictoSensu nivel, String instituto, String nome, String endereco, String contato){
+        super(nome, endereco, contato);
         this.nivel = nivel;
         this.insituto = instituto;
 

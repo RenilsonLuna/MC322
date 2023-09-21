@@ -12,9 +12,13 @@ public class Emprestimo {
     protected ItemMultimidiaImpl item;
     private static int qtdEmprestimos;
 
-    public Emprestimo(LocalDate dataDevolucao, MembroImpl emprestante, ItemMultimidiaImpl item) {
+    public Emprestimo(MembroImpl emprestante, ItemMultimidiaImpl item) {
         this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucao = dataDevolucao;
+        
+        long prazo = emprestante.getPrazoEmprestimo();
+        LocalDate dev = LocalDate.now().plusDays(prazo);
+        this.dataDevolucao = dev;
+        
         this.item = item;
         this.emprestante = emprestante;
         this.codigoEmprestimo = qtdEmprestimos;

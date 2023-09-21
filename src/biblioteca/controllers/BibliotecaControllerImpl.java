@@ -9,11 +9,9 @@ import biblioteca.models.*;
 
 public class BibliotecaControllerImpl implements BibliotecaController {
     private Map<Integer, ItemMultimidiaImpl> itens;
-    private Biblioteca lib;
 
-    public BibliotecaControllerImpl(Biblioteca lib){
-        this.lib = lib;
-        this.itens = lib.getItens();
+    public BibliotecaControllerImpl(){
+        this.itens = Biblioteca.getItens();
     }
 
     @Override
@@ -65,7 +63,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
 
                 LivroFisico l = new LivroFisico(id, titulo, detalhes, autores, genero, editora, edicao, isbn, tombo);
-                lib.adicionarMidia(l);
+                Biblioteca.adicionarMidia(l);
                 System.out.println("Livro Adicionado!");
                 consultarItensDisponiveis();
                 break;
@@ -86,7 +84,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
                 scanner.nextLine();
                 
                 Cd cd = new Cd(id, titulo, detalhes, autores, genero, armazenamento, distribuidora, duracao);
-                lib.adicionarMidia(cd);
+                Biblioteca.adicionarMidia(cd);
                 System.out.print("CD adicionado!");
                 break;
             case 4:
@@ -106,7 +104,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
                 Dvd dvd = new Dvd(id, titulo, detalhes, autores, genero, armazenamento2, distribuidora2, duracao2, colorido);
 
-                lib.adicionarMidia(dvd);
+                Biblioteca.adicionarMidia(dvd);
                 break;
             default:
                 break;

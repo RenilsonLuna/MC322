@@ -5,14 +5,14 @@ import java.time.temporal.ChronoUnit;
 
 
 public final class Administradores extends Funcionario {
-    public Administradores(String nome, String endereco, String contato, Biblioteca lib){
-        super(nome, endereco, contato, lib);
+    public Administradores(String nome, String endereco, String contato){
+        super(nome, endereco, contato);
     }
 
     // cadastrar membro
-    public void cadastraUsuario(MembroImpl usario, Biblioteca lib){ }
+    public void cadastraUsuario(MembroImpl usario){ }
 
-    public void reservar(Biblioteca lib,String tipo, String nomeTitulo, MembroImpl usuario){ }
+    public void reservar(String tipo, String nomeTitulo, MembroImpl usuario){ }
 
     public void aplicarMulta(MembroImpl usuario, ItemMultimidiaImpl item){ 
         long diasPassados = ChronoUnit.DAYS.between(item.getDataEntrega(), LocalDate.now());
@@ -22,7 +22,7 @@ public final class Administradores extends Funcionario {
     }
 
     public void reservar(MembroImpl usuario, ItemMultimidiaImpl midia){ 
-        lib.AdicionarReserva(usuario, midia);
+        Biblioteca.AdicionarReserva(usuario, midia);
     }
  
     public void retirarMulta(MembroImpl usuario){
