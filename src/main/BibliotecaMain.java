@@ -37,6 +37,7 @@ public class BibliotecaMain {
         Biblioteca.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523));
         Biblioteca.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553));
        
+        
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
@@ -276,7 +277,31 @@ public class BibliotecaMain {
 
     // Métodos para realizar empréstimo, renovação e reserva
     private static void realizarEmprestimo(Scanner scanner) {
+
+        System.out.print("Digite o titulo do item: ");
+        String titulo = scanner.nextLine();
+
         
+        int raMembro = scanner.nextInt();
+        scanner.nextLine();
+
+        MembroImpl membro = membroController.buscarMembroPorIdentificacao(raMembro);
+        if (membro != null){
+            System.out.println("Membro encontrado!");
+        }else{
+            System.out.println("Membro não encontrado...");
+            return;
+        }
+        ItemMultimidiaImpl item = bibliotecaController.buscarItem(titulo);
+        if (item != null){
+            System.out.println("Item disponivel");
+            bibliotecaController.emprestarItem(membro, item);
+        }else{
+            System.out.println("Item não encontrado");
+        }
+        
+
+
         System.out.println("Operação de Empréstimo de Itens");
     }
 

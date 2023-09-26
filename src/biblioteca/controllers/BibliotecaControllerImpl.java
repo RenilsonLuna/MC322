@@ -1,5 +1,6 @@
 package biblioteca.controllers;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,7 +10,6 @@ import biblioteca.models.Dvd;
 import biblioteca.models.Emprestimo;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
-import biblioteca.models.Membro;
 import biblioteca.models.MembroImpl;
 
 
@@ -157,5 +157,11 @@ public class BibliotecaControllerImpl implements BibliotecaController {
             return true;
         }else
             return false;
+    }
+
+    @Override
+    public ItemMultimidiaImpl buscarItem(String titulo){
+        ItemMultimidiaImpl itemBuscado = Biblioteca.buscar(titulo);
+        return itemBuscado;
     }
 }

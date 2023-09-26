@@ -18,7 +18,15 @@ public class Biblioteca {
     public static int getQtdMidias() { return itens.size(); }
     
     // Outros Metodos
-    public static boolean verificaDisponibilidade(ItemMultimidiaImpl multimidia){ return true; }
+    public static ItemMultimidiaImpl buscar(String titulo){
+        for (ItemMultimidiaImpl item : Biblioteca.getItens().values()){
+            if (item.getTitulo() == titulo){
+                return item;
+            }
+        }
+        return null;
+        
+    }
     
     public static boolean isMembro (MembroImpl membro){
         for(MembroImpl m : membros)

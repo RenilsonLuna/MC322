@@ -14,4 +14,5 @@ public interface BibliotecaController {
     boolean removerItem(Scanner scanner);
     boolean emprestarItem(MembroImpl membro, ItemMultimidiaImpl item);
     boolean devolverItem(ItemMultimidiaImpl item);
+    ItemMultimidiaImpl buscarItem(String titulo);
 }
