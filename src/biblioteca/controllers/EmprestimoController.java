@@ -1,6 +1,5 @@
 package biblioteca.controllers;
 
-import biblioteca.models.ItemMultimidia;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.MembroImpl;
 import biblioteca.models.QuantidadeMaximaException;

@@ -1,17 +1,13 @@
 package biblioteca.controllers;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
 import biblioteca.models.Biblioteca;
 import biblioteca.models.Cd;
 import biblioteca.models.Dvd;
-import biblioteca.models.Emprestimo;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
-import biblioteca.models.MembroImpl;
-import biblioteca.models.QuantidadeMaximaException;
 
 
 public class BibliotecaControllerImpl implements BibliotecaController {

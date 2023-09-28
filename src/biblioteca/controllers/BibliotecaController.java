@@ -4,8 +4,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 import biblioteca.models.ItemMultimidiaImpl;
-import biblioteca.models.MembroImpl;
-import biblioteca.models.QuantidadeMaximaException;
 
 // import biblioteca.views.BibliotecaView;
 
