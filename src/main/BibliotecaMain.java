@@ -59,8 +59,8 @@ public class BibliotecaMain {
             bibliotecaController.emprestarItem(membro1, l1);
             bibliotecaController.emprestarItem(membro1, l2);
             bibliotecaController.emprestarItem(membro1, cd1);
-            bibliotecaController.emprestarItem(membro1, cd2);
-            bibliotecaController.emprestarItem(membro1, cd3);
+            // bibliotecaController.emprestarItem(membro1, cd2);
+            // bibliotecaController.emprestarItem(membro1, cd3);
             System.out.println("Todos adicionados.");
         }catch(QuantidadeMaximaException e){
             e.getMessage();
@@ -323,7 +323,7 @@ public class BibliotecaMain {
                 bibliotecaController.emprestarItem(membro, item);
             }catch(QuantidadeMaximaException e){
                 System.out.println("Erro ao emprestar livro.");
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }else{
             System.out.println("Item não encontrado");

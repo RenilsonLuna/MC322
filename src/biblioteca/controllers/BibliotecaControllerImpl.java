@@ -141,8 +141,8 @@ public class BibliotecaControllerImpl implements BibliotecaController {
 
     @Override
     public void emprestarItem(MembroImpl membro, ItemMultimidiaImpl item) throws QuantidadeMaximaException{
-        System.out.println(membro.getQtdMidiasEmprestadas() + " -- " + membro.getMultimidiasEmprestadas().length);
-        if (membro.getQtdMidiasEmprestadas() > membro.getMultimidiasEmprestadas().length){
+        System.out.println(membro.getQtdMidiasEmprestadas() + " -- " + membro.getLimiteEmprestimos());
+        if (membro.getQtdMidiasEmprestadas() >= membro.getLimiteEmprestimos()){
             throw new QuantidadeMaximaException("Quantidade máxima de livros excedida.");
         }
         Emprestimo emp = new Emprestimo(membro, item);
