@@ -11,6 +11,7 @@ import biblioteca.models.Emprestimo;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.MembroImpl;
+import biblioteca.models.QuantidadeMaximaException;
 
 
 public class BibliotecaControllerImpl implements BibliotecaController {
@@ -106,6 +107,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
                 System.out.print("Distribuidora: ");
                 String distribuidora2 = scanner.nextLine();
 
+                System.out.println("Colorido: (true ou false): ");
                 boolean colorido = scanner.nextBoolean();
 
                 Dvd dvd = new Dvd(id, titulo, detalhes, autores, genero, armazenamento2, distribuidora2, duracao2, colorido);
@@ -138,10 +140,13 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     }
 
     @Override
-    public boolean emprestarItem(MembroImpl membro, ItemMultimidiaImpl item) {
+    public void emprestarItem(MembroImpl membro, ItemMultimidiaImpl item) throws QuantidadeMaximaException{
+        System.out.println(membro.getQtdMidiasEmprestadas() + " -- " + membro.getMultimidiasEmprestadas().length);
+        if (membro.getQtdMidiasEmprestadas() > membro.getMultimidiasEmprestadas().length){
+            throw new QuantidadeMaximaException("Quantidade máxima de livros excedida.");
+        }
         Emprestimo emp = new Emprestimo(membro, item);
         Biblioteca.adicionarEmprestimo(emp);
-        return true;
     }
 
     @Override

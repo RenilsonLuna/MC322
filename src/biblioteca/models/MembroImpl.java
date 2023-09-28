@@ -12,7 +12,7 @@ public abstract class MembroImpl implements Membro{
     protected LocalDate dataRegistro;
 
     protected ItemMultimidiaImpl[] multimidiasEmprestadas;
-    private int qtdMidiasEmprestadas = 0;
+    private int qtdMidiasEmprestadas;
 
     protected int prazoEmprestimo;
     protected double valorMulta;
@@ -21,12 +21,13 @@ public abstract class MembroImpl implements Membro{
     protected boolean bloqueado = false;
 
     public MembroImpl(String nome, String endereco, String contato) {
+        this.multimidiasEmprestadas = new ItemMultimidiaImpl[10];
         this.nome = nome;
         this.ra = contagemRa;
         this.endereco = endereco;
         this.contato = contato;
         this.dataRegistro = LocalDate.now();
-
+        this.qtdMidiasEmprestadas = 0;
         contagemRa++;
     }
     
@@ -61,7 +62,7 @@ public abstract class MembroImpl implements Membro{
     public void addMultimidiaEmprestada(ItemMultimidiaImpl item){
         int qtd = getQtdMidiasEmprestadas();
         multimidiasEmprestadas[qtd] = item;
-        setQtdMidiasEmprestadas(qtd + 1);
+        this.setQtdMidiasEmprestadas(qtd + 1);
     }
 
     // Other methods
@@ -70,7 +71,7 @@ public abstract class MembroImpl implements Membro{
         for(int i = 0; i < qtd; i++){
             if (multimidiasEmprestadas[i] != null){
                 int id = multimidiasEmprestadas[i].getIdMultimidia();
-                if (item.getIdMultimidia() == id){;
+                if (item.getIdMultimidia() == id){
                     multimidiasEmprestadas[qtd - 1] = multimidiasEmprestadas[i];
                     multimidiasEmprestadas[qtd - 1] = null;
                 }

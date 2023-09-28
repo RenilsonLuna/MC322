@@ -6,8 +6,6 @@ public class Funcionario extends MembroImpl{
     
     public Funcionario(String nome, String endereco, String contato){
         super(nome, endereco, contato);
-
-        this.multimidiasEmprestadas = new ItemMultimidiaImpl[4];
         this.prazoEmprestimo = 20;
         this.valorMulta = 0.75;
     }

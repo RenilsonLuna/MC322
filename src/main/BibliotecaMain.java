@@ -1,7 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,10 +11,12 @@ import biblioteca.controllers.MembroControllerImpl;
 import biblioteca.controllers.RelatorioController;
 import biblioteca.controllers.RelatorioControllerImpl;
 import biblioteca.models.Biblioteca;
-import biblioteca.models.Emprestimo;
+import biblioteca.models.Cd;
+import biblioteca.models.Graduacao;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.MembroImpl;
+import biblioteca.models.QuantidadeMaximaException;
 import biblioteca.views.BibliotecaView;
 import biblioteca.views.BibliotecaViewImpl;
 import biblioteca.views.MembroView;
@@ -34,13 +34,37 @@ public class BibliotecaMain {
         // int idMultimidia, String titulo, String detalhes, String[] autores, String genero, String editora, int edicao,
         //     String isbn, int tombo, int qtdCopias
 
-        Biblioteca.adicionarMidia(new LivroFisico(0, "Além do bem e do mal", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523));
-        Biblioteca.adicionarMidia(new LivroFisico(1, "A Alvorada", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553));
-       
+        // int idMultimidia, String titulo, String detalhes, String autores, String genero, int armazenamento, String distribuidora,
+        //     int duracao
+
+        LivroFisico l1 = new LivroFisico(0, "l1", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523);
+        LivroFisico l2 = new LivroFisico(1, "l2", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553);
+        Cd cd1 = new Cd(2, "cd1", "cd1", "Eu e tu", "Romance", 12, "pmm", 15);
+        Cd cd2 = new Cd(3, "cd2", "cd2", "Eu e tu", "Romance", 12, "pmm", 15);
+        Cd cd3 = new Cd(4, "cd3", "cd3", "Eu e tu", "Romance", 12, "pmm", 15);
+
+        Biblioteca.adicionarMidia(l1);
+        Biblioteca.adicionarMidia(l2);
+        Biblioteca.adicionarMidia(cd1);
+        Biblioteca.adicionarMidia(cd2);
+        Biblioteca.adicionarMidia(cd3);
+
+        Graduacao membro1 = new Graduacao("Renilson", "Rua luiz capucci", "9999999");
+        Biblioteca.cadastrarMembro(membro1);
         
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
+        try{
+            bibliotecaController.emprestarItem(membro1, l1);
+            bibliotecaController.emprestarItem(membro1, l2);
+            bibliotecaController.emprestarItem(membro1, cd1);
+            bibliotecaController.emprestarItem(membro1, cd2);
+            bibliotecaController.emprestarItem(membro1, cd3);
+            System.out.println("Todos adicionados.");
+        }catch(QuantidadeMaximaException e){
+            e.getMessage();
+        }
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
         MembroView membroView = new MembroViewImpl(membroController);
@@ -281,7 +305,7 @@ public class BibliotecaMain {
         System.out.print("Digite o titulo do item: ");
         String titulo = scanner.nextLine();
 
-        
+        System.out.print("Digite o RA do emprestante: ");
         int raMembro = scanner.nextInt();
         scanner.nextLine();
 
@@ -292,10 +316,15 @@ public class BibliotecaMain {
             System.out.println("Membro não encontrado...");
             return;
         }
+
         ItemMultimidiaImpl item = bibliotecaController.buscarItem(titulo);
         if (item != null){
-            System.out.println("Item disponivel");
-            bibliotecaController.emprestarItem(membro, item);
+            try{
+                bibliotecaController.emprestarItem(membro, item);
+            }catch(QuantidadeMaximaException e){
+                System.out.println("Erro ao emprestar livro.");
+                e.getMessage();
+            }
         }else{
             System.out.println("Item não encontrado");
         }

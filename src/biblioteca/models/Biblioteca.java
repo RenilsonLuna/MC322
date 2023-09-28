@@ -20,12 +20,11 @@ public class Biblioteca {
     // Outros Metodos
     public static ItemMultimidiaImpl buscar(String titulo){
         for (ItemMultimidiaImpl item : Biblioteca.getItens().values()){
-            if (item.getTitulo() == titulo){
+            if (item.getTitulo().equals(titulo)){
                 return item;
             }
         }
         return null;
-        
     }
     
     public static boolean isMembro (MembroImpl membro){

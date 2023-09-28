@@ -8,8 +8,6 @@ public class PosGraduacao extends MembroImpl {
         super(nome, endereco, contato);
         this.nivel = nivel;
         this.insituto = instituto;
-
-        this.multimidiasEmprestadas = new ItemMultimidiaImpl[5];
         this.prazoEmprestimo = 20;
         this.valorMulta = 1;
     }

@@ -19,9 +19,11 @@ public class Emprestimo {
         LocalDate dev = LocalDate.now().plusDays(prazo);
         this.dataDevolucao = dev;
         
+        
         this.item = item;
         this.emprestante = emprestante;
         this.codigoEmprestimo = qtdEmprestimos;
+        emprestante.addMultimidiaEmprestada(item);
         qtdEmprestimos++;
     }
 
