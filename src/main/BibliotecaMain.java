@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import biblioteca.controllers.BibliotecaController;
 import biblioteca.controllers.BibliotecaControllerImpl;
+import biblioteca.controllers.EmprestimoController;
+import biblioteca.controllers.EmprestimoControllerImpl;
 import biblioteca.controllers.MembroController;
 import biblioteca.controllers.MembroControllerImpl;
 import biblioteca.controllers.RelatorioController;
@@ -28,6 +30,7 @@ public class BibliotecaMain {
     private static BibliotecaController bibliotecaController;
     private static MembroController membroController;
     private static RelatorioController relatorioController;
+    private static EmprestimoController emprestimoController;
 
     public static void main(String[] args) {
 
@@ -55,10 +58,12 @@ public class BibliotecaMain {
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
+        emprestimoController = new EmprestimoControllerImpl();
+        
         try{
-            bibliotecaController.emprestarItem(membro1, l1);
-            bibliotecaController.emprestarItem(membro1, l2);
-            bibliotecaController.emprestarItem(membro1, cd1);
+            emprestimoController.emprestar(membro1, l1);
+            emprestimoController.emprestar(membro1, l2);
+            emprestimoController.emprestar(membro1, cd1);
             // bibliotecaController.emprestarItem(membro1, cd2);
             // bibliotecaController.emprestarItem(membro1, cd3);
             System.out.println("Todos adicionados.");
@@ -320,7 +325,7 @@ public class BibliotecaMain {
         ItemMultimidiaImpl item = bibliotecaController.buscarItem(titulo);
         if (item != null){
             try{
-                bibliotecaController.emprestarItem(membro, item);
+                emprestimoController.emprestar(membro, item);
             }catch(QuantidadeMaximaException e){
                 System.out.println("Erro ao emprestar livro.");
                 System.out.println(e.getMessage());
