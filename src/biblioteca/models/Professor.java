@@ -7,6 +7,7 @@ public class Professor extends MembroImpl {
         super(nome, endereco, contato);
         this.disciplina = disciplina;
         this.prazoEmprestimo = 30;
+        this.limiteEmprestimos = 7;
         this.valorMulta = 0.5;
 
     }

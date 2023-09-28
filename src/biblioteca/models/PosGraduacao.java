@@ -9,6 +9,7 @@ public class PosGraduacao extends MembroImpl {
         this.nivel = nivel;
         this.insituto = instituto;
         this.prazoEmprestimo = 20;
+        this.limiteEmprestimos = 5;
         this.valorMulta = 1;
     }
 

@@ -7,12 +7,13 @@ public class Funcionario extends MembroImpl{
     public Funcionario(String nome, String endereco, String contato){
         super(nome, endereco, contato);
         this.prazoEmprestimo = 20;
+        this.limiteEmprestimos = 4;
         this.valorMulta = 0.75;
     }
 
     public void emprestar(ItemMultimidiaImpl item, MembroImpl usuario){
         if (item.getDisponivel()
-            && usuario.getQtdMidiasEmprestadas() < usuario.getMultimidiasEmprestadas().length 
+            && usuario.getQtdMidiasEmprestadas() < usuario.getLimiteEmprestimos()
             && !usuario.getBloqueado()){
 
             Emprestimo emprestimo = new Emprestimo(usuario, item);

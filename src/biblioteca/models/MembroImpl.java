@@ -1,6 +1,8 @@
 package biblioteca.models;
 // import biblioteca.Emprestimo;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class MembroImpl implements Membro{
     
@@ -11,23 +13,24 @@ public abstract class MembroImpl implements Membro{
     protected String contato;
     protected LocalDate dataRegistro;
 
-    protected ItemMultimidiaImpl[] multimidiasEmprestadas;
+    protected List<ItemMultimidiaImpl> multimidiasEmprestadas;
     private int qtdMidiasEmprestadas;
-
+    protected int limiteEmprestimos;
     protected int prazoEmprestimo;
+
     protected double valorMulta;
     protected double totalMulta;
     
     protected boolean bloqueado = false;
 
     public MembroImpl(String nome, String endereco, String contato) {
-        this.multimidiasEmprestadas = new ItemMultimidiaImpl[10];
         this.nome = nome;
         this.ra = contagemRa;
         this.endereco = endereco;
         this.contato = contato;
         this.dataRegistro = LocalDate.now();
         this.qtdMidiasEmprestadas = 0;
+        this.multimidiasEmprestadas = new ArrayList<>();
         contagemRa++;
     }
     
@@ -47,10 +50,11 @@ public abstract class MembroImpl implements Membro{
     public double getTotalMulta() { return totalMulta; }
     public void setTotalMulta(double totalMulta) { this.totalMulta = totalMulta; }
 
+    public int getLimiteEmprestimos() { return limiteEmprestimos; }
     
     public LocalDate getDataRegistro() { return dataRegistro; }
     
-    public ItemMultimidiaImpl[] getMultimidiasEmprestadas() { return multimidiasEmprestadas; }
+    public List<ItemMultimidiaImpl> getMultimidiasEmprestadas() { return multimidiasEmprestadas; }
 
     public int getPrazoEmprestimo() { return prazoEmprestimo; }
 
@@ -58,26 +62,18 @@ public abstract class MembroImpl implements Membro{
 
     public boolean getBloqueado() { return bloqueado; }
 
-
+    
+    // Other methods
     public void addMultimidiaEmprestada(ItemMultimidiaImpl item){
+        multimidiasEmprestadas.add(item);
         int qtd = getQtdMidiasEmprestadas();
-        multimidiasEmprestadas[qtd] = item;
         this.setQtdMidiasEmprestadas(qtd + 1);
     }
 
-    // Other methods
     public void removerMultimidia(ItemMultimidiaImpl item){
+        multimidiasEmprestadas.remove(item);
         int qtd = getQtdMidiasEmprestadas();
-        for(int i = 0; i < qtd; i++){
-            if (multimidiasEmprestadas[i] != null){
-                int id = multimidiasEmprestadas[i].getIdMultimidia();
-                if (item.getIdMultimidia() == id){
-                    multimidiasEmprestadas[qtd - 1] = multimidiasEmprestadas[i];
-                    multimidiasEmprestadas[qtd - 1] = null;
-                }
-            }
-        }
-        setQtdMidiasEmprestadas(getQtdMidiasEmprestadas() - 1);
+        setQtdMidiasEmprestadas(qtd - 1);
     }
     
     public void solicitarEmprestimo(ItemMultimidiaImpl item, Funcionario f){
