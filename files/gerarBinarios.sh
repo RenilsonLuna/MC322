@@ -1,0 +1,1 @@
+javac -d ./bin/ ./src/biblioteca/controllers/*.java ./src/biblioteca/models/*.java ./src/biblioteca/views/*.java ./src/main/*.java
