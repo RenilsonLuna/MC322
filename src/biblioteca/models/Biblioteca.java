@@ -63,7 +63,6 @@ public class Biblioteca {
                 emprestimos[Emprestimo.getQtdEmprestimos() - 1] = novoEmprestimo; 
     }   
 
-
     public static void removerEmprestimo(Emprestimo emp){
         int qtdEmp = Emprestimo.getQtdEmprestimos();
         for(int i = 0; i < qtdEmp; i++){

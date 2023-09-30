@@ -4,26 +4,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import biblioteca.controllers.BibliotecaController;
-import biblioteca.controllers.BibliotecaControllerImpl;
-import biblioteca.controllers.EmprestimoController;
-import biblioteca.controllers.EmprestimoControllerImpl;
-import biblioteca.controllers.MembroController;
-import biblioteca.controllers.MembroControllerImpl;
-import biblioteca.controllers.RelatorioController;
-import biblioteca.controllers.RelatorioControllerImpl;
+import biblioteca.controllers.*;
+import biblioteca.views.*;
 import biblioteca.models.Biblioteca;
 import biblioteca.models.Cd;
 import biblioteca.models.Graduacao;
+import biblioteca.models.ItemIndisponivelException;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.MembroImpl;
 import biblioteca.models.QuantidadeMaximaException;
-import biblioteca.views.BibliotecaView;
-import biblioteca.views.BibliotecaViewImpl;
-import biblioteca.views.MembroView;
-import biblioteca.views.MembroViewImpl;
-import biblioteca.views.RelatorioView;
 
 
 public class BibliotecaMain {
@@ -33,12 +23,6 @@ public class BibliotecaMain {
     private static EmprestimoController emprestimoController;
 
     public static void main(String[] args) {
-
-        // int idMultimidia, String titulo, String detalhes, String[] autores, String genero, String editora, int edicao,
-        //     String isbn, int tombo, int qtdCopias
-
-        // int idMultimidia, String titulo, String detalhes, String autores, String genero, int armazenamento, String distribuidora,
-        //     int duracao
 
         LivroFisico l1 = new LivroFisico(0, "l1", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523);
         LivroFisico l2 = new LivroFisico(1, "l2", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553);
@@ -68,6 +52,8 @@ public class BibliotecaMain {
             // bibliotecaController.emprestarItem(membro1, cd3);
             System.out.println("Todos adicionados.");
         }catch(QuantidadeMaximaException e){
+            e.getMessage();
+        } catch (ItemIndisponivelException e) {
             e.getMessage();
         }
 
@@ -327,7 +313,10 @@ public class BibliotecaMain {
             try{
                 emprestimoController.emprestar(membro, item);
             }catch(QuantidadeMaximaException e){
-                System.out.println("Erro ao emprestar livro.");
+                System.out.print("Erro no emprestimo: ");
+                System.out.println(e.getMessage());
+            }catch(ItemIndisponivelException e){
+                System.out.print("Erro no emprestimo: ");
                 System.out.println(e.getMessage());
             }
         }else{

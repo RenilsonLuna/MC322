@@ -60,9 +60,4 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     public void setReserva(MembroImpl reserva) { this.reserva = reserva; }
 
     public static int getQtdMidias(){ return qtdMidias; }
-
-    // Outras funcoes
-    public int numCopiasDisponivel(ItemMultimidiaImpl multiimdia, int edicao){
-        return 0;
-    }
 }

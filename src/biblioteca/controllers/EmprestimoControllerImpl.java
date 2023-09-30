@@ -4,15 +4,19 @@ import biblioteca.models.Biblioteca;
 import biblioteca.models.Emprestimo;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.MembroImpl;
+
+// Exceptions
 import biblioteca.models.QuantidadeMaximaException;
+import biblioteca.models.ItemIndisponivelException;
 
 public class EmprestimoControllerImpl implements EmprestimoController{
 
     @Override
-    public void emprestar(MembroImpl membro, ItemMultimidiaImpl item) throws QuantidadeMaximaException{
-        System.out.println(membro.getQtdMidiasEmprestadas() + " -- " + membro.getLimiteEmprestimos());
+    public void emprestar(MembroImpl membro, ItemMultimidiaImpl item) throws QuantidadeMaximaException, ItemIndisponivelException{
         if (membro.getQtdMidiasEmprestadas() >= membro.getLimiteEmprestimos()){
             throw new QuantidadeMaximaException("Quantidade máxima de livros excedida.");
+        } if (!item.getDisponivel()){
+            throw new ItemIndisponivelException("Item indisponível.");
         }
         Emprestimo emp = new Emprestimo(membro, item);
         Biblioteca.adicionarEmprestimo(emp);

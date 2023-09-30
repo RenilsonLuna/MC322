@@ -24,6 +24,7 @@ public class Emprestimo {
         this.emprestante = emprestante;
         this.codigoEmprestimo = qtdEmprestimos;
         emprestante.addMultimidiaEmprestada(item);
+        item.setDisponivel(false);
         qtdEmprestimos++;
     }
 
