@@ -14,6 +14,7 @@ import biblioteca.models.ItemIndisponivelException;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.MembroImpl;
+import biblioteca.models.NaoEmprestadoException;
 import biblioteca.models.QuantidadeMaximaException;
 
 
@@ -49,15 +50,16 @@ public class BibliotecaMain {
             emprestimoController.emprestar(membro1, l1);
             emprestimoController.emprestar(membro1, l2);
             emprestimoController.emprestar(membro1, cd1);
-            // bibliotecaController.emprestarItem(membro1, cd2);
-            // bibliotecaController.emprestarItem(membro1, cd3);
-            System.out.println("Todos adicionados.");
+
+            emprestimoController.devolver(membro1, cd3);
         }catch(QuantidadeMaximaException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
         } catch (ItemIndisponivelException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }catch(HistoricoMultasException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
+        }catch(NaoEmprestadoException e){
+            System.out.println(e.getMessage());
         }
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);

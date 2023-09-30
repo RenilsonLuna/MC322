@@ -8,6 +8,7 @@ import biblioteca.models.MembroImpl;
 
 // Exceptions
 import biblioteca.models.QuantidadeMaximaException;
+import biblioteca.models.NaoEmprestadoException;
 import biblioteca.models.ItemIndisponivelException;
 
 public class EmprestimoControllerImpl implements EmprestimoController{
@@ -26,11 +27,24 @@ public class EmprestimoControllerImpl implements EmprestimoController{
     }
 
     @Override
-    public void devolver(ItemMultimidiaImpl item) {
+    public void devolver(MembroImpl membro, ItemMultimidiaImpl item) throws NaoEmprestadoException {
+
+        // Tratando exception
+        boolean itemEmprestado = false;
+        for (ItemMultimidiaImpl em : membro.getMultimidiasEmprestadas()){
+            if (item.getIdMultimidia() == em.getIdMultimidia()){
+                itemEmprestado = true;
+            }
+        }
+
+        if (itemEmprestado == false){
+            throw new NaoEmprestadoException("Item Nao emprestado.");
+        }
+
         Emprestimo[] emprestimos = Biblioteca.getEmprestimos();
         Emprestimo emp = null;
         for (Emprestimo m : emprestimos){
-            if (m.getItem().getIdMultimidia() == item.getIdMultimidia())
+            if (m != null && m.getItem().getIdMultimidia() == item.getIdMultimidia())
                 emp = m;
         }
         if (emp != null){
