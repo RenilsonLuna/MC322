@@ -9,6 +9,7 @@ import biblioteca.views.*;
 import biblioteca.models.Biblioteca;
 import biblioteca.models.Cd;
 import biblioteca.models.Graduacao;
+import biblioteca.models.HistoricoMultasException;
 import biblioteca.models.ItemIndisponivelException;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
@@ -54,6 +55,8 @@ public class BibliotecaMain {
         }catch(QuantidadeMaximaException e){
             e.getMessage();
         } catch (ItemIndisponivelException e) {
+            e.getMessage();
+        }catch(HistoricoMultasException e){
             e.getMessage();
         }
 
@@ -316,6 +319,9 @@ public class BibliotecaMain {
                 System.out.print("Erro no emprestimo: ");
                 System.out.println(e.getMessage());
             }catch(ItemIndisponivelException e){
+                System.out.print("Erro no emprestimo: ");
+                System.out.println(e.getMessage());
+            }catch(HistoricoMultasException e){
                 System.out.print("Erro no emprestimo: ");
                 System.out.println(e.getMessage());
             }

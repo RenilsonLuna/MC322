@@ -2,6 +2,7 @@ package biblioteca.controllers;
 
 import biblioteca.models.Biblioteca;
 import biblioteca.models.Emprestimo;
+import biblioteca.models.HistoricoMultasException;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.MembroImpl;
 
@@ -12,11 +13,13 @@ import biblioteca.models.ItemIndisponivelException;
 public class EmprestimoControllerImpl implements EmprestimoController{
 
     @Override
-    public void emprestar(MembroImpl membro, ItemMultimidiaImpl item) throws QuantidadeMaximaException, ItemIndisponivelException{
+    public void emprestar(MembroImpl membro, ItemMultimidiaImpl item) throws QuantidadeMaximaException, ItemIndisponivelException, HistoricoMultasException{
         if (membro.getQtdMidiasEmprestadas() >= membro.getLimiteEmprestimos()){
             throw new QuantidadeMaximaException("Quantidade máxima de livros excedida.");
         } if (!item.getDisponivel()){
             throw new ItemIndisponivelException("Item indisponível.");
+        }if (membro.getTotalMulta() > 0){
+            throw new HistoricoMultasException("Multas a serem pagas.");
         }
         Emprestimo emp = new Emprestimo(membro, item);
         Biblioteca.adicionarEmprestimo(emp);
