@@ -51,7 +51,7 @@ public class BibliotecaMain {
             emprestimoController.emprestar(membro1, l2);
             emprestimoController.emprestar(membro1, cd1);
 
-            emprestimoController.devolver(membro1, cd3);
+            emprestimoController.devolver(membro1, cd1);
         }catch(QuantidadeMaximaException e){
             System.out.println(e.getMessage());
         } catch (ItemIndisponivelException e) {

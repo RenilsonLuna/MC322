@@ -37,10 +37,11 @@ public class EmprestimoControllerImpl implements EmprestimoController{
             }
         }
 
-        if (itemEmprestado == false){
+        if (!itemEmprestado){
             throw new NaoEmprestadoException("Item Nao emprestado.");
         }
 
+        // Realizando devolucao
         Emprestimo[] emprestimos = Biblioteca.getEmprestimos();
         Emprestimo emp = null;
         for (Emprestimo m : emprestimos){
@@ -48,6 +49,7 @@ public class EmprestimoControllerImpl implements EmprestimoController{
                 emp = m;
         }
         if (emp != null){
+            if (!emp.getItem().getConservado())
             Biblioteca.removerEmprestimo(emp);
         }
     }

@@ -11,7 +11,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     private LocalDate dataEntrada;
     private LocalDate dataEntrega;
     private boolean disponivel;
-    private String conservacao;
+    private boolean conservado;
     private static int qtdMidias;
     protected MembroImpl reserva;
     
@@ -21,7 +21,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
         this.detalhes = detalhes;
         this.autores = autores;
         this.genero = genero;
-        this.conservacao = "Novo";
+        this.conservado = true;
         this.disponivel = true;
         qtdMidias++;
     }
@@ -53,8 +53,8 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     public boolean getDisponivel() { return disponivel; }
     public void setDisponivel(boolean disponivel) { this.disponivel = disponivel; }
 
-    public String getConservacao() { return conservacao; }
-    public void setConservacao(String conservacao) { this.conservacao = conservacao; }
+    public boolean getConservado() { return conservado; }
+    public void setConservado(boolean conservacao) { this.conservado = conservacao; }
 
     public MembroImpl getReserva() { return reserva; }
     public void setReserva(MembroImpl reserva) { this.reserva = reserva; }

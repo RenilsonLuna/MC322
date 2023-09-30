@@ -25,8 +25,8 @@ public interface ItemMultimidia {
     public boolean getDisponivel();
     public void setDisponivel(boolean disponivel);
 
-    public String getConservacao();
-    public void setConservacao(String conservacao);
+    public boolean getConservado();
+    public void setConservado(boolean conservado);
 
     public MembroImpl getReserva();
     public void setReserva(MembroImpl reserva);
