@@ -10,12 +10,14 @@ import biblioteca.models.Biblioteca;
 import biblioteca.models.Cd;
 import biblioteca.models.Graduacao;
 import biblioteca.models.HistoricoMultasException;
+import biblioteca.models.ItemExistenteException;
 import biblioteca.models.ItemIndisponivelException;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
 import biblioteca.models.MembroImpl;
 import biblioteca.models.NaoEmprestadoException;
 import biblioteca.models.QuantidadeMaximaException;
+import biblioteca.models.TipoMidia;
 
 
 public class BibliotecaMain {
@@ -26,11 +28,11 @@ public class BibliotecaMain {
 
     public static void main(String[] args) {
 
-        LivroFisico l1 = new LivroFisico(0, "l1", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523);
-        LivroFisico l2 = new LivroFisico(1, "l2", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp21", 135553);
-        Cd cd1 = new Cd(2, "cd1", "cd1", "Eu e tu", "Romance", 12, "pmm", 15);
-        Cd cd2 = new Cd(3, "cd2", "cd2", "Eu e tu", "Romance", 12, "pmm", 15);
-        Cd cd3 = new Cd(4, "cd3", "cd3", "Eu e tu", "Romance", 12, "pmm", 15);
+        LivroFisico l1 = new LivroFisico(0, TipoMidia.LivroFisico, "l1", "Livro de bolso", "Joao gomes, Carlos silva", "Comedia", "LPM", 0, "7kp21", 135523);
+        LivroFisico l2 = new LivroFisico(1, TipoMidia.LivroFisico, "l2", "Livro de bolso", "Joao neto, Carlos mendes", "Comedia", "LPM", 0, "7kp22", 135553);
+        Cd cd1 = new Cd(2, TipoMidia.CD, "cd1", "cd1", "Eu e tu", "Romance", 12, "pmm", 15);
+        Cd cd2 = new Cd(3, TipoMidia.CD, "cd2", "cd2", "Eu e tu", "Romance", 12, "pmm", 15);
+        Cd cd3 = new Cd(4, TipoMidia.CD, "cd3", "cd3", "Eu e tu", "Romance", 12, "pmm", 15);
 
         Biblioteca.adicionarMidia(l1);
         Biblioteca.adicionarMidia(l2);
@@ -348,7 +350,11 @@ public class BibliotecaMain {
 
     // Métodos para adicionar, editar e remover itens e membros
     private static void adicionarItem(Scanner scanner) {
-        bibliotecaController.adicionarItem(scanner);
+        try{
+            bibliotecaController.adicionarItem(scanner);
+        }catch(ItemExistenteException e){
+            System.out.println(e.getMessage());
+        }
         System.out.println("Operação de Adição de Item");
     }
 

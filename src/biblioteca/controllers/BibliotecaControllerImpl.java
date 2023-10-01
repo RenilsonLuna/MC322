@@ -6,8 +6,10 @@ import java.util.Scanner;
 import biblioteca.models.Biblioteca;
 import biblioteca.models.Cd;
 import biblioteca.models.Dvd;
+import biblioteca.models.ItemExistenteException;
 import biblioteca.models.ItemMultimidiaImpl;
 import biblioteca.models.LivroFisico;
+import biblioteca.models.TipoMidia;
 
 
 public class BibliotecaControllerImpl implements BibliotecaController {
@@ -18,7 +20,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     }
 
     @Override
-    public boolean adicionarItem(Scanner scanner){
+    public boolean adicionarItem(Scanner scanner) throws ItemExistenteException{
 
         System.out.println("Tipo de multimidia: ");
         System.out.println("1. Livro Físico");
@@ -60,12 +62,18 @@ public class BibliotecaControllerImpl implements BibliotecaController {
                 System.out.print("ISBN: ");
                 String isbn = scanner.nextLine();
 
+                for (ItemMultimidiaImpl it : itens.values()){
+                    if (it.getTipoMidia() == TipoMidia.LivroFisico && isbn.equals(((LivroFisico)it).getIsbn())){
+                        throw new ItemExistenteException("Item com este ISBN já existe.");
+                    }
+                }
+
                 System.out.print("Tombo: ");
                 int tombo = scanner.nextInt();
                 scanner.nextLine();
 
 
-                LivroFisico l = new LivroFisico(id, titulo, detalhes, autores, genero, editora, edicao, isbn, tombo);
+                LivroFisico l = new LivroFisico(id, TipoMidia.LivroFisico, titulo, detalhes, autores, genero, editora, edicao, isbn, tombo);
                 Biblioteca.adicionarMidia(l);
                 System.out.println("Livro Adicionado!");
                 consultarItensDisponiveis();
@@ -86,7 +94,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
                 int duracao = scanner.nextInt();
                 scanner.nextLine();
                 
-                Cd cd = new Cd(id, titulo, detalhes, autores, genero, armazenamento, distribuidora, duracao);
+                Cd cd = new Cd(id, TipoMidia.CD, titulo, detalhes, autores, genero, armazenamento, distribuidora, duracao);
                 Biblioteca.adicionarMidia(cd);
                 System.out.print("CD adicionado!");
                 break;
@@ -106,7 +114,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
                 System.out.println("Colorido: (true ou false): ");
                 boolean colorido = scanner.nextBoolean();
 
-                Dvd dvd = new Dvd(id, titulo, detalhes, autores, genero, armazenamento2, distribuidora2, duracao2, colorido);
+                Dvd dvd = new Dvd(id, TipoMidia.DVD, titulo, detalhes, autores, genero, armazenamento2, distribuidora2, duracao2, colorido);
 
                 Biblioteca.adicionarMidia(dvd);
                 break;
