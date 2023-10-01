@@ -9,9 +9,9 @@ public class Dvd extends ItemMultimidiaImpl{
     private boolean colorido;
     private static int qtdDvd = 0;
 
-    public Dvd(int idMultimidia, String titulo, String detalhes, String autores, String genero, int armazenamento,
+    public Dvd(int idMultimidia, TipoMidia tipoMidia, String titulo, String detalhes, String autores, String genero, int armazenamento,
             String distribuidora, int duracao, boolean colorido) {
-        super(idMultimidia, titulo, detalhes, autores, genero);
+        super(idMultimidia, tipoMidia, titulo, detalhes, autores, genero);
         this.armazenamento = armazenamento;
         this.distribuidora = distribuidora;
         this.duracao = duracao;

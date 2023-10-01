@@ -14,8 +14,9 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     private boolean conservado;
     private static int qtdMidias;
     protected MembroImpl reserva;
+    private TipoMidia tipoMidia;
     
-    public ItemMultimidiaImpl(int idMultimidia, String titulo, String detalhes, String autores, String genero) {
+    public ItemMultimidiaImpl(int idMultimidia, TipoMidia tipoMidia, String titulo, String detalhes, String autores, String genero) {
         this.idMultimidia = idMultimidia;
         this.titulo = titulo;
         this.detalhes = detalhes;
@@ -24,17 +25,18 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
         this.conservado = true;
         this.disponivel = true;
         qtdMidias++;
+        this.tipoMidia = tipoMidia;
     }
 
     // Getters e setters
     public int getIdMultimidia() { return idMultimidia; }
     public void setIdMultimidia(int idMultimidia) { this.idMultimidia = idMultimidia; }
     
+    public TipoMidia getTipoMidia() { return tipoMidia; }
+
     public LocalDate getDataEntrega(){ return dataEntrega;}
 
-    public void setDataEntrega(ItemMultimidiaImpl item){
-        this.dataEntrega = item.dataEntrega;
-    }
+    public void setDataEntrega(ItemMultimidiaImpl item){ this.dataEntrega = item.dataEntrega; }
 
     public String getDetalhes(){ return detalhes; }
 

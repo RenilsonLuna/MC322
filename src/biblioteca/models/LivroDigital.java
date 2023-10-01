@@ -11,11 +11,11 @@ public class LivroDigital extends ItemMultimidiaImpl {
     private int totalLicencas;
     private static int qtdLivrosDigitais = 0;
 
-    public LivroDigital(int idMultimidia, String titulo, String detalhes, String autores, String genero, Formato formato,
+    public LivroDigital(int idMultimidia, TipoMidia tipoMidia, String titulo, String detalhes, String autores, String genero, Formato formato,
             int numLicencas, String url, Dispositivo[] compatibilidade, LocalDate dataDisponibilidade,
             int totalLicencas) {
 
-        super(idMultimidia, titulo, detalhes, autores, genero);
+        super(idMultimidia, tipoMidia, titulo, detalhes, autores, genero);
         this.formato = formato;
         this.numLicencas = numLicencas;
         this.url = url;

@@ -9,9 +9,9 @@ public class Cd extends ItemMultimidiaImpl{
     private static int qtdCds = 0;
 
 
-    public Cd(int idMultimidia, String titulo, String detalhes, String autores, String genero, int armazenamento, String distribuidora,
+    public Cd(int idMultimidia, TipoMidia tipoMidia, String titulo, String detalhes, String autores, String genero, int armazenamento, String distribuidora,
             int duracao) {
-        super(idMultimidia, titulo, detalhes, autores, genero);
+        super(idMultimidia, tipoMidia, titulo, detalhes, autores, genero);
         this.armazenamento = armazenamento;
         this.distribuidora = distribuidora;
         this.duracao = duracao;
